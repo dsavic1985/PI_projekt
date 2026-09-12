@@ -78,6 +78,26 @@ input:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
 }
 
+
+/* homepage */
+
+.main-container .page-back {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 45px;
+  height: 40px;
+  cursor: pointer;
+  background-image: url("assets/images/page_back.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.main-container .page-back:hover {
+  background-image: url("assets/images/page_back_hover.svg");
+}
+
 .main-container .main-intro {
   height: 100vh;
   display: flex;
@@ -143,6 +163,16 @@ input:-webkit-autofill:active {
 .dashboard .header button {
   margin-inline: 0;
 }
+
+.dashboard .header .back-icon {
+  background-image: url(assets/images/page_back.svg);
+  background-repeat: no-repeat;
+}
+
+.dashboard .header .back-icon:hover {
+  background-image: url(assets/images/page_back_hover.svg);
+}
+
 .dashboard .header .logout-icon {
   background-image: url(assets/images/logout.svg);
 }
@@ -150,6 +180,8 @@ input:-webkit-autofill:active {
 .dashboard .header .logout-icon:hover {
   background-image: url(assets/images/logout_hover.svg);
 }
+
+.dashboard .header .back-icon,
 .dashboard .header .logout-icon {
   width: 43px;
   height: 43px;
@@ -227,6 +259,32 @@ input:-webkit-autofill:active {
 .start-icon:hover {
   background-image: url(assets/images/start_hover.svg);
 }
+
+/* single player info */
+.dashboard .player-panel {
+  width: fit-content;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard .player-panel form {
+  margin-inline: 60px;
+}
+
+/* player stats */
+.dashboard .player-panel .player-name {
+  text-align: center;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+}
+
+.emoji-icon {
+  display: block;
+  margin: 0 auto 30px auto;
+}
+
 /* popups */
 .popup-background {
   position: fixed;

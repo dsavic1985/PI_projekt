@@ -1,0 +1,30 @@
+
+/* table */
+.table-container {
+  width: fit-content;
+  height: fit-content;
+  max-height: 40vh;
+  overflow-y: auto;
+}
+
+table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  display: block;
+}
+
+thead {
+  background-color: var(--blue);
+}
+
+thead td {
+  color: var(--primary-light-color);
+}
+
+td {
+  padding: 10px 15px;
+}
+
+tbody td {
+  border-bottom: 1px solid var(--blue);
+}
