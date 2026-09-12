@@ -1,0 +1,32 @@
+
+<div class="dashboard-container">
+    <div class="main-logo">
+        <img src="images/main_title.svg" alt="" class="app-logo">
+    </div>
+
+    <div class="dashboard">
+
+        <div class="header">
+            <button class="listing">DODAJ IGRAČA</button>
+            <div class="logout-icon" (click)="logout()"></div>
+        </div>
+
+        <div class="dashboard-panel">
+            <div class="inner-panel home-panel">
+
+                @for (player of players; track $index) {
+                <div class="single-player">
+                    <p class="name">{{player.name}}</p>
+                    <img [src]="getAvatarSrc(player.avatarId)" alt="" class="avatar">
+                    <div class="controls">
+                        <div class="settings-icon"></div>
+                        <div class="history-icon"></div>
+                        <div class="start-icon"></div>
+                    </div>
+                </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
