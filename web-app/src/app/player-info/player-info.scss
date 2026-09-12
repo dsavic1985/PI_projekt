@@ -1,0 +1,36 @@
+.delete-popup{
+  background-color: var(--primary-dark-color);
+  border-radius: 50px;
+  padding: 50px 100px;
+  width: fit-content;
+}
+
+.delete-popup p {
+  margin-bottom: 20px;
+  color: var(--primary-light-color);
+  text-align: center;
+}
+
+.delete-popup button {
+  background-color: #ce4047;
+  width: fit-content;
+  margin-bottom: 15px;
+}
+
+.delete-popup button:hover {
+  background-color: var(--hover-color);
+}
+
+.delete-button {
+  height: fit-content;
+  background-color: var(--hover-color);
+}
+
+.delete-button:hover {
+  background-color: var(--primary-dark-color);
+}
+
+.form-info-buttons button {
+  display: inline-block;
+  margin-inline: 20px;
+}

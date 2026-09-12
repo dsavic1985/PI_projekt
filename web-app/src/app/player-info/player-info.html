@@ -1,0 +1,51 @@
+
+<div class="dashboard-container">
+    <div class="main-logo">
+        <img src="images/main_title.svg" alt="" class="app-logo">
+    </div>
+
+    <div class="dashboard">
+
+        <div class="header">
+            <div class="back-icon" routerLink="/dashboard"></div>
+            <div class="logout-icon"></div>
+        </div>
+
+        <div class="dashboard-panel">
+            <div class="inner-panel">
+
+                <div class="player-panel">
+                    <div>
+                        <img src="images/avatar.svg" alt="" class="avatar">
+                        <button>Promijeni avatar</button>
+                    </div>
+
+                    <form>
+                        <div>
+                            <label for="firstName"><input type="text" name="firstName" [(ngModel)]="player.name"></label>
+                            <label for="dateOfBirth"><input type="date" name="dateOfBirth" [(ngModel)]="player.born"></label>
+                            <div class="form-info-buttons">
+                                <button type="button" class="button">Spremi igrača</button>
+                                <button type="button" class="delete-button" (click)="showDelete()">Obriši igrača</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+
+        @if(deletePopupVisible){
+            <div class="popup-background">
+                <div class="delete-popup popup">
+                    <img src="images/emoji.svg" alt="" class="emoji-icon">
+
+                    <p>OBRISATI IGRAČA?</p>
+
+                    <button>Da</button>
+                    <button (click)="hideDelete()">Ne</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>

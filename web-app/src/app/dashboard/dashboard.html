@@ -7,7 +7,7 @@
     <div class="dashboard">
 
         <div class="header">
-            <button class="listing">DODAJ IGRAČA</button>
+            <button class="listing" routerLink="/player-info">DODAJ IGRAČA</button>
             <div class="logout-icon" (click)="logout()"></div>
         </div>
 
@@ -19,7 +19,7 @@
                     <p class="name">{{player.name}}</p>
                     <img [src]="getAvatarSrc(player.avatarId)" alt="" class="avatar">
                     <div class="controls">
-                        <div class="settings-icon"></div>
+                        <div class="settings-icon" routerLink="/player-info/{{player.id}}"></div>
                         <div class="history-icon"></div>
                         <div class="start-icon"></div>
                     </div>
