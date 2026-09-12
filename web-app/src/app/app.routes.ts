@@ -16,6 +16,7 @@ export const routes: Routes = [
   { path: 'player-stats/:id', component: PlayerStats },
   { path: 'chapters/:playerId', component: Chapters},
   { path: 'math-levels/:playerId', component: MathLevels },
+  { path: 'math-levels/math-1/:playerId', component: Math1 },
   { path: 'alph-levels/:playerId', component: AlphLevels },
   { path: '**', redirectTo: '/login', pathMatch: 'full' },
 ];

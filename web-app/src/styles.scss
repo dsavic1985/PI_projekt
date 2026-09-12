@@ -260,6 +260,14 @@ input:-webkit-autofill:active {
   background-image: url(assets/images/start_hover.svg);
 }
 
+.level-back-icon {
+  background-image: url(assets/images/level_back.svg);
+}
+
+.level-back-icon:hover {
+  background-image: url(assets/images/level_back_hover.svg);
+}
+
 /* single player info */
 .dashboard .player-panel {
   width: fit-content;
@@ -305,9 +313,57 @@ input:-webkit-autofill:active {
   width: 90%;
   margin: 0 auto;
 }
+
+.level-content img {
+  max-height: 250px;
+}
+
+.content-select {
+  max-width: 300px;
+  margin-top: 100px;
+}
+
+.level-svg {
+  background-color: #ffffffb0;
+  border-radius: 30px;
+  padding: 50px;
+  width: 100%;
+  max-width: 50vw;
+  margin-inline: auto;
+  text-align: center;
+}
+
+/* single level popup & delete popup */
+.level-popup {
+  background-color: var(--primary-dark-color);
+  border-radius: 50px;
+  padding: 50px 100px;
+}
+
+.level-popup p {
+  margin-bottom: 20px;
+  color: var(--primary-light-color);
+  text-align: center;
+}
+
+.level-popup .controls {
+  margin-top: 40px;
+}
+
 .emoji-icon {
   display: block;
   margin: 0 auto 30px auto;
+}
+
+/* level close icon */
+.page-back.close-icon {
+  width: 40px;
+  height: 40px;
+  background-image: url(assets/images/level_close.svg);
+}
+
+.page-back.close-icon:hover {
+  background-image: url(assets/images/level_close_hover.svg);
 }
 
 /* popups */
