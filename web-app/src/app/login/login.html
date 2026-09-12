@@ -1,0 +1,19 @@
+
+<div class="main-intro">
+    <div>
+        <img src="images/main_title.svg" alt="" class="app-name">
+        <button class="login" id="login-button" (click)="showLogin()">Prijava</button>
+    </div>
+</div>
+
+<div class="popup-background" [class.closed]="!loginVisible">
+    <div class="login-popup popup">
+        <div class="popup-close" (click)="hideLogin()"></div>
+
+        <form class="login-form">
+            <input name="email" type="text" [(ngModel)]="email" placeholder="Korisničko ime" required>
+            <input name="password" type="password" [(ngModel)]="password" placeholder="Lozinka" required>
+            <button type="submit" (click)="login()">Prijava</button>
+        </form>
+    </div>
+</div>
