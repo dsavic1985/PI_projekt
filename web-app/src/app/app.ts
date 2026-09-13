@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Event, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 
 @Component({
   imports: [RouterOutlet],
@@ -8,5 +9,16 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.html',
 })
 export class App {
-  protected readonly title = signal('web-app');
+  private router = inject(Router);
+  viewSecondaryBackground = signal(false);
+
+  constructor(){
+    // Subscribe to router events and react to events
+    this.router.events.pipe(takeUntilDestroyed()).subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        const secondaryBackground = event.url.startsWith("/math-levels/") || event.url.startsWith("/alph-levels/");
+        this.viewSecondaryBackground.set(secondaryBackground);
+      }
+    });
+  }
 }
