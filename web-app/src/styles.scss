@@ -301,9 +301,6 @@ input:-webkit-autofill:active {
 }
 
 /* levels */
-.secondary-container {
-  background-image: url(assets/images/home_levels.svg);
-}
 
 .levels-intro {
   padding: 150px 100px 0 350px;
@@ -421,4 +418,16 @@ input:-webkit-autofill:active {
 .answer-icon {
   display: inline-block;
   margin-left: 15px;
+}
+
+.answer-picked {
+  fill: #e4e893;
+}
+
+.answer-correct {
+  fill: #9cc185;
+}
+
+.answer-wrong {
+  fill: #e9000d;
 }

@@ -24,8 +24,9 @@ export class Alph1 extends GameLevel implements OnInit {
     [3, "oblak"],
   ]);
 
-  currentStepLetters = signal<string[]>([]);
-  currentStepLetterIdx = signal(0);
+  currentStepPickedLetters = signal<string[]>([]);
+  currentStepLetterPosition = signal(0);
+  currentStepPickedHtmlElements: HTMLElement[] = [];
   showWrong = signal(false);
   showCorrect = signal(false);
 
@@ -36,27 +37,36 @@ export class Alph1 extends GameLevel implements OnInit {
   }
 
   private initCurrentState(){
-    const ans = this.answers.get(this.step());
-    const array = Array.from(ans ?? '').map(x => '\u00a0');
-    this.currentStepLetters.set(array);
-    this.currentStepLetterIdx.set(0);
+    const answer = this.answers.get(this.step()) ?? '';
+    const array = Array.from(answer).map(x => '\u00a0');
+    this.currentStepPickedLetters.set(array);
+    this.currentStepLetterPosition.set(0);
+
+    while(this.currentStepPickedHtmlElements.length > 0){
+      let elem = this.currentStepPickedHtmlElements.pop();
+      elem?.classList.remove("answer-picked");
+    }
   }
 
-  addLetter(letter: string){
+  addLetter(letter: string, sender: HTMLElement){
     if (this.pause)
       return;
 
-    const idx = this.currentStepLetterIdx();
+    sender.classList.add("answer-picked");
+    this.currentStepPickedHtmlElements.push(sender);
+    const position = this.currentStepLetterPosition();
 
-    this.currentStepLetters.update(l => {
-      l[idx] = letter;
-      return l;
+    this.currentStepPickedLetters.update(letters => {
+      letters[position] = letter;
+      return letters;
     });
 
-    let ans = this.answers.get(this.step());
-    if (idx >= (ans?.length ?? 1) - 1){
-      let word = this.currentStepLetters().join('').toLowerCase();
-      if (word == ans){
+    const answer = this.answers.get(this.step());
+    const answerLength = answer?.length ?? 1;
+
+    if (position >= answerLength - 1){
+      let word = this.currentStepPickedLetters().join('').toLowerCase();
+      if (word == answer){
         this.proceedToNextStep();
       }
       else{
@@ -64,23 +74,28 @@ export class Alph1 extends GameLevel implements OnInit {
       }
     }
     else{
-      this.currentStepLetterIdx.update(i => i + 1);
+      this.currentStepLetterPosition.update(i => i + 1);
     }
   }
 
   storeMistake(){
+    this.pause = true;
     this.score.update(s => Math.max(s - 1, 1));
     this.showWrong.set(true);
-    this.initCurrentState();
+
+    setTimeout(() => {
+      this.showWrong.set(false);
+      this.initCurrentState();
+      this.pause = false;
+    }, 1000);
   }
 
   proceedToNextStep(){
+    this.pause = true;
     this.showWrong.set(false);
     this.showCorrect.set(true);
-    this.pause = true;
     
     setTimeout(() => {
-      this.pause = false;
       this.showCorrect.set(false);
 
       if (this.step() >= this.totalSteps){
@@ -90,6 +105,8 @@ export class Alph1 extends GameLevel implements OnInit {
         this.step.update(s => s + 1);
         this.initCurrentState();
       }
+
+      this.pause = false;
     }, 1000);
   }
 

@@ -23,7 +23,7 @@ export class Math1 extends GameLevel{
     if (this.pause == false){
       if (correct){
         this.pause = true;
-        sender.style.fill = this.correctColor;
+        sender.classList.add("answer-correct");
 
         setTimeout(() => {
           this.pause = false;
@@ -32,7 +32,7 @@ export class Math1 extends GameLevel{
       }
       else{
         this.storeMistake();
-        sender.style.fill = this.wrongColor;
+        sender.classList.add("answer-wrong");
       }
     }
   }

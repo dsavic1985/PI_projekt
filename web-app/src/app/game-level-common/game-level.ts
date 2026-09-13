@@ -2,8 +2,6 @@ import { inject, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
 export abstract class GameLevel {
-  readonly correctColor = '#9cc185';
-  readonly wrongColor = '#e9000d';
   private activatedRoute = inject(ActivatedRoute);
 
   playerId = "";
