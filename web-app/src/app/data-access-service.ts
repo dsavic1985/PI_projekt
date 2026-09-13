@@ -44,4 +44,31 @@ export class DataAccessService {
     })
     return players;
   }
+
+  async getPlayer(playerId: string): Promise<Player|undefined>{
+    const data = { playerId: playerId };
+    const result = await getPlayer(data, this.serverOnly);
+        
+    const player = result.data.players[0];
+    if (player){
+      return {
+        id: player.id,
+        name: player.name,
+        born: new Date(player.born),
+        avatarId: player.avatarId,
+      }
+    }
+
+    return undefined;
+  }
+
+  async addPlayer(player: Player): Promise<void>{
+    const data = { 
+      name: player.name,
+      born: player.born.toISOString(),
+      avatarId: player.avatarId,
+    };
+    const result = await createPlayer(data);
+    player.id = result.data.player_insert.id;
+  }
 }
