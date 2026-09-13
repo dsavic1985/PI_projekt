@@ -71,4 +71,21 @@ export class DataAccessService {
     const result = await createPlayer(data);
     player.id = result.data.player_insert.id;
   }
+
+  async getSessions(playerId: string): Promise<GameSession[]>{
+    const data = { playerId: playerId };
+    const result = await getGameSessions(data, this.serverOnly);
+    const sessions = result.data.gameSessions.map(x => {
+      const session: GameSession = {
+        playerId: playerId,
+        chapter: x.chapter,
+        level: x.level,
+        score: x.score,
+        durationSeconds: x.durationSeconds,
+        playedAt: new Date(x.playedAt),
+      }
+      return session;
+    });
+    return sessions;
+  }
 }

@@ -17,11 +17,13 @@
                 <div class="player-panel stats-panel">
                     <div>
                         <h1>&#9733; STATISTIKA &#9733;</h1>
+                        <p class="player-name">{{playerName()}}</p>
 
                         <div class="table-container">
                             <table>
                                 <thead>
                                     <tr>
+                                        <td>Datum</td>
                                         <td>Poglavlje</td>
                                         <td>Razina</td>
                                         <td>Vrijeme</td>
@@ -30,8 +32,9 @@
                                 </thead>
 
                                 <tbody>
-                                    @for (session of gameSessions; track $index) {
+                                    @for (session of gameSessions(); track $index) {
                                     <tr>
+                                        <td>{{session.playedAt | date:'dd.MM.yyyy. HH:mm:ss'}}</td>
                                         <td>{{session.chapter}}</td>
                                         <td>{{session.level}}</td>
                                         <td>{{session.durationSeconds | secondsToDurationString}}</td>
