@@ -28,3 +28,5 @@ yarn-error.log*
 /.env.*
 
 **/*.vscode
+dataconnect/.dataconnect
+.emulators_data

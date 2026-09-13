@@ -12,16 +12,16 @@
         </div>
 
         <div class="dashboard-panel">
-            <div class="inner-panel home-panel">
+            <div class="inner-panel">
 
-                @for (player of players; track $index) {
+                @for (player of players(); track $index) {
                 <div class="single-player">
                     <p class="name">{{player.name}}</p>
                     <img [src]="getAvatarSrc(player.avatarId)" alt="" class="avatar">
                     <div class="controls">
                         <div class="settings-icon" routerLink="/player-info/{{player.id}}"></div>
                         <div class="history-icon" routerLink="/player-stats/{{player.id}}"></div>
-                        <div class="start-icon"></div>
+                        <div class="start-icon" routerLink="/chapters/{{player.id}}"></div>
                     </div>
                 </div>
                 }

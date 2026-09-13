@@ -191,16 +191,14 @@ input:-webkit-autofill:active {
 
 .dashboard .inner-panel {
   height: 60vh;
+  max-height: 85vh;
   padding: 50px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   justify-items: center;
   gap: 50px;
-  background-color: #bbacac71;
+  background-color: #d6d1d1;
   border-radius: 15px;
-}
-
-.dashboard .home-panel {
   overflow-y: auto;
 }
 
@@ -208,8 +206,9 @@ input:-webkit-autofill:active {
   width: fit-content;
   height: fit-content;
   padding: 50px;
-  border-radius: 15px;
-  background-color: var(--primary-dark-color);
+  border-radius: 50px;
+  background-color: #ffffff81;
+  border: 4px solid #ffffff81;
 }
 
 .dashboard .inner-panel .single-player .name {
@@ -276,10 +275,28 @@ input:-webkit-autofill:active {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  gap: 40px;
+}
+
+.dashboard .player-panel.stats-panel{
+  align-items: start;
+}
+
+.dashboard .player-panel .single-avatar{
+  background-color: #ffffff81;
+  border: 4px solid #ffffff81;
+  padding: 30px;
+  border-radius: 50px;
 }
 
 .dashboard .player-panel form {
   margin-inline: 60px;
+}
+
+.dashboard .player-panel input{
+  background-color: #ffffff81;
+  border: 2px solid #ffffff81;
+  border-radius: 15px;
 }
 
 /* player stats */

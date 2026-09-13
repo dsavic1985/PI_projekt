@@ -10,10 +10,13 @@ import {
 import { setPersistence, connectAuthEmulator } from 'firebase/auth';
 import { environment } from '../environments/environment';
 import { FirebaseAppInitService } from './firebase-app-init-service';
+import { DataAccessService } from './data-access-service';
+import { ErrorHelper } from './error-helper';
 
 @Service()
 export class AuthService {
   private appInit = inject(FirebaseAppInitService);
+  private dataAccess = inject(DataAccessService); 
 
   private firebaseAuth: Auth;
 
@@ -46,6 +49,13 @@ export class AuthService {
       email,
       password
     );
+    if (result?.user){
+      try{
+        await this.dataAccess.createUserIfNotExists(result.user);
+      } catch (e){
+        alert("AuthService Error saving user data: " + ErrorHelper.getMessage(e));
+      }
+    }
   }
 
   async logout(): Promise<void> {
