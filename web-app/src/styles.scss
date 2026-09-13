@@ -1,7 +1,7 @@
 :root {
   --primary-dark-color: #00323b;
   --primary-light-color: #fff;
-  --hover-color: #f49195;
+  --hover-color: #47abb5;
   --scroll-color: #0b7e84;
   --blue: #08869c;
   --warning-red: #ce4047;
@@ -31,6 +31,13 @@ html {
   scroll-behavior: smooth;
 }
 
+h1 {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
 /* buttons */
 button {
   display: block;
@@ -55,7 +62,7 @@ form {
 
 input {
   width: 100%;
-  padding: 10px 0 10px 10px;
+  padding: 10px;
   margin-bottom: 20px;
   outline: none;
   border: none;
@@ -78,7 +85,6 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
 }
-
 
 /* homepage */
 
@@ -297,6 +303,10 @@ input:-webkit-autofill:active {
   background-color: #ffffff81;
   border: 2px solid #ffffff81;
   border-radius: 15px;
+}
+
+.dashboard .player-panel input.ng-touched.ng-invalid{
+  border: 2px solid var(--warning-red);
 }
 
 /* player stats */

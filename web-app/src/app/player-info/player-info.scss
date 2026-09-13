@@ -34,3 +34,44 @@
   display: inline-block;
   margin-inline: 20px;
 }
+
+/* avatar picker */
+.inner-panel.avatar-panel {
+  display: block;
+}
+
+.avatar-picker {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.avatar-picker img {
+  display: inline-block;
+  background-color: #ffffff81;
+  border: 4px solid #ffffff81;
+  padding: 30px;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.avatar-picker img:hover {
+  background-color: #7eb0b9;
+}
+
+.avatar-picker img:active {
+  background-color: #ffffff81;
+  border: 4px solid #7eb0b9;
+}
+
+.avatar-picker img.picked {
+  background-color: #ffffff81;
+  border: 4px solid #7eb0b9;
+}
+
+.avatar-button {
+  margin-top: 50px;
+}

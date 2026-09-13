@@ -3,6 +3,7 @@ import { Player } from '../models/player';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../auth-service';
 import { DataAccessService } from '../data-access-service';
+import { AvatarHelper } from '../avatar-helper';
 
 @Component({
   imports: [RouterLink],
@@ -23,7 +24,7 @@ export class Dashboard implements OnInit{
   }
 
   getAvatarSrc(avatarId: number){
-    return "images/avatar.svg";
+    return AvatarHelper.getAvatarSrc(avatarId);
   }
 
   async logout(){

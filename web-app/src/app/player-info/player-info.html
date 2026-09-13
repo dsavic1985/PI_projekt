@@ -7,26 +7,32 @@
     <div class="dashboard">
 
         <div class="header">
-            <div class="back-icon" routerLink="/dashboard"></div>
+            <div class="back-icon" (click)="back()"></div>
             <div class="logout-icon" (click)="logout()"></div>
         </div>
 
+        @if(avatarPickerVisible() == false){
         <div class="dashboard-panel">
             <div class="inner-panel">
 
                 <div class="player-panel">
                     <div class="single-avatar">
-                        <img src="images/avatar.svg" alt="" class="avatar">
-                        <button>Promijeni avatar</button>
+                        <img [src]="playerAvatarSrc()" alt="" class="avatar">
+                        <button (click)="showAvatarPicker()">Promijeni avatar</button>
                     </div>
 
-                    <form>
+                    <form #playerForm="ngForm" (ngSubmit)="save(playerForm)">
                         <div>
-                            <label for="firstName"><input type="text" name="firstName" [(ngModel)]="player.name"></label>
-                            <label for="dateOfBirth"><input type="date" name="dateOfBirth" [(ngModel)]="player.born"></label>
+                            <label for="firstName">
+                            <input type="text" name="firstName" [(ngModel)]="playerName" required></label>
+                            <label for="dateOfBirth">
+                            <input type="date" name="dateOfBirth" [(ngModel)]="playerBorn" required></label>
+
                             <div class="form-info-buttons">
-                                <button type="button" class="button">Spremi igrača</button>
+                                <button type="submit" class="button">Spremi igrača</button>
+                                @if(playerId()){
                                 <button type="button" class="delete-button" (click)="showDelete()">Obriši igrača</button>
+                                }
                             </div>
                         </div>
                     </form>
@@ -34,8 +40,27 @@
                 
             </div>
         </div>
+        }
+        @else{
+        <div class="dashboard-panel">
+            <div class="inner-panel avatar-panel">
+                <div class="player-panel">
+                    <div class="avatar-picker">
+                        <img src="images/avatar.svg" alt="" [class.picked]="pickedAvatarId() == 1" (click)="pickAvatarId(1)">
+                        <img src="images/avatar_2.svg" alt="" [class.picked]="pickedAvatarId() == 2" (click)="pickAvatarId(2)">
+                        <img src="images/avatar_3.svg" alt="" [class.picked]="pickedAvatarId() == 3" (click)="pickAvatarId(3)">
+                        <img src="images/avatar_4.svg" alt="" [class.picked]="pickedAvatarId() == 4" (click)="pickAvatarId(4)">
+                    </div>
+                </div>
 
-        @if(deletePopupVisible){
+                <div class="avatar-button">
+                    <button (click)="confirmPickedAvatarId()">Potvrdi</button>
+                </div>
+            </div>
+        </div>
+        }
+
+        @if(deletePopupVisible()){
             <div class="popup-background">
                 <div class="delete-popup popup">
                     <img src="images/emoji.svg" alt="" class="emoji-icon">

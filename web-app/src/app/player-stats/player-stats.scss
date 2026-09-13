@@ -3,7 +3,7 @@
 .table-container {
   width: fit-content;
   height: fit-content;
-  max-height: 40vh;
+  max-height: 30vh;
   overflow-y: auto;
 }
 
@@ -14,7 +14,7 @@ table {
 }
 
 thead {
-  background-color: var(--blue);
+  background-color: var(--primary-dark-color);
 }
 
 thead td {
