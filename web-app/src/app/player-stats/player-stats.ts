@@ -20,11 +20,18 @@ export class PlayerStats {
   };
   gameSessions: GameSession[] = [];
   private activatedRoute = inject(ActivatedRoute);
+  private auth = inject(AuthService);
+  private router = inject(Router);
 
   constructor() {
     // Access route parameters
     this.activatedRoute.params.subscribe((params) => {
       this.playerId = params['id'];
     });
+  }
+
+  async logout(){
+    await this.auth.logout();
+    await this.router.navigate(['/login']);
   }
 }

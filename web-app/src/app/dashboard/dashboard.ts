@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Player } from '../models/player';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../auth-service';
 
 @Component({
   imports: [RouterLink],
@@ -9,6 +10,8 @@ import { RouterLink } from '@angular/router';
   templateUrl: './dashboard.html',
 })
 export class Dashboard {
+  private auth = inject(AuthService);
+  private router = inject(Router);
 
   players: Player[] = [{
     id: "1",
@@ -21,6 +24,8 @@ export class Dashboard {
     return "images/avatar.svg";
   }
 
-  logout(){
+  async logout(){
+    await this.auth.logout();
+    await this.router.navigate(['/login']);
   }
 }

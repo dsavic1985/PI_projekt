@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Player } from '../models/player';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../auth-service';
 
 @Component({
   imports: [RouterLink, FormsModule],
@@ -14,6 +15,8 @@ export class PlayerInfo {
   player: Player = new Player();
 
   private activatedRoute = inject(ActivatedRoute);
+  private auth = inject(AuthService);
+  private router = inject(Router);
 
   deletePopupVisible = false;
 
@@ -30,5 +33,10 @@ export class PlayerInfo {
 
   hideDelete(){
     this.deletePopupVisible = false;
+  }
+
+  async logout(){
+    await this.auth.logout();
+    await this.router.navigate(['/login']);
   }
 }

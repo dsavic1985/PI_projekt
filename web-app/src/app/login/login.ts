@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth-service';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -13,6 +15,9 @@ export class Login {
   email: string = "";
   password: string = "";
 
+  auth = inject(AuthService);
+  router = inject(Router);
+
   showLogin(){
     this.loginVisible = true;
   }
@@ -21,7 +26,12 @@ export class Login {
     this.loginVisible = false;
   }
 
-  login(){
-    
+  async login(){
+    try{
+      await this.auth.login(this.email, this.password);
+      await this.router.navigate(["/dashboard"]);
+    } catch(e){
+      alert("Greška prijave: " + e)
+    }
   }
 }
