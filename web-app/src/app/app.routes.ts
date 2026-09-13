@@ -6,6 +6,8 @@ import { PlayerStats } from './player-stats/player-stats';
 import { Chapters } from './chapters/chapters';
 import { MathLevels } from './math-levels/math-levels';
 import { AlphLevels } from './alph-levels/alph-levels';
+import { Math1 } from './math-levels/math-1/math-1';
+import { Alph1 } from './alph-levels/alph-1/alph-1';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -18,5 +20,6 @@ export const routes: Routes = [
   { path: 'math-levels/:playerId', component: MathLevels },
   { path: 'math-levels/math-1/:playerId', component: Math1 },
   { path: 'alph-levels/:playerId', component: AlphLevels },
+  { path: 'alph-levels/alph-1/:playerId', component: Alph1 },
   { path: '**', redirectTo: '/login', pathMatch: 'full' },
 ];

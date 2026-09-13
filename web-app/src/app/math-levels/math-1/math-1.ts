@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import {  RouterLink } from '@angular/router';
 import { GameLevel } from '../../game-level-common/game-level';
 import { SecondsToDurationStringPipe } from '../../seconds-to-duration-string-pipe';
+import { GameConstants } from '../../game-level-common/game-constants';
 
 @Component({
   imports: [RouterLink, SecondsToDurationStringPipe],
@@ -11,16 +12,12 @@ import { SecondsToDurationStringPipe } from '../../seconds-to-duration-string-pi
 })
 export class Math1 extends GameLevel{
 
-  readonly totalSteps = 5;
+  readonly totalSteps = 4;
   step = signal(1);
   pause = false;
 
-  override chapterName: string = "brojalica";
+  override chapterName: string = GameConstants.mathChapter;
   override chapterLevel: number = 1;
-
-  constructor() {
-    super();
-  }
 
   answerCurrentStep(correct: boolean, sender: HTMLElement){
     if (this.pause == false){
@@ -42,7 +39,7 @@ export class Math1 extends GameLevel{
 
   private proceedToNextStep(){
     this.step.update(s => s + 1);
-    if (this.step() == this.totalSteps){
+    if (this.step() > this.totalSteps){
       this.finish();
     }
   }

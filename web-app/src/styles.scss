@@ -4,6 +4,7 @@
   --hover-color: #f49195;
   --scroll-color: #0b7e84;
   --blue: #08869c;
+  --warning-red: #ce4047;
   --fs-general: 1.1rem;
 }
 
@@ -405,4 +406,19 @@ input:-webkit-autofill:active {
 
 .popup .popup-close:hover {
   background-image: url("assets/images/close_hover.svg");
+}
+
+/* alphabetical levels */
+.single-letter p {
+  display: inline-block;
+  margin-inline: 30px;
+  font-size: 4rem;
+  text-align: center;
+  text-transform: uppercase;
+  border-bottom: 3px solid var(--primary-dark-color);
+}
+
+.answer-icon {
+  display: inline-block;
+  margin-left: 15px;
 }
