@@ -1,0 +1,8 @@
+mutation CreateUser($displayName: String!, $email: String!) @auth(level: USER) {
+  user_insert(data: { id_expr: "auth.uid", displayName: $displayName, email: $email, createdAt_expr: "request.time" })
+}
+
+mutation CreatePlayer($name: String!, $born: Date!, $avatarId: Int!) @auth(level: USER) {
+  player_insert(data: { userId_expr: "auth.uid", name: $name, born: $born, avatarId: $avatarId })
+}
+

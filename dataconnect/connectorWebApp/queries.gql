@@ -1,0 +1,16 @@
+
+query GetUser @auth(level: USER) {
+  user(key: { id_expr: "auth.uid" }) { displayName, email, createdAt }
+}
+
+query GetPlayers @auth(level: USER) {
+  players(where: { userId: { eq_expr: "auth.uid" } }, limit: 100) { id, name, born, avatarId }
+}
+
+query GetPlayer($playerId: UUID!) @auth(level: USER) {
+  players(where: { userId: { eq_expr: "auth.uid" }, id: { eq: $playerId } }, limit: 100) { id, name, born, avatarId }
+}
+
+query GetGameSessions($playerId: UUID!) @auth(level: USER) {
+  gameSessions(where: { playerId: { eq: $playerId }, player: { userId: { eq_expr: "auth.uid" } } }, orderBy: { playedAt: DESC }, limit: 100) { chapter, level, score, playedAt, durationSeconds }
+}
