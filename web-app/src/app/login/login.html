@@ -6,14 +6,29 @@
     </div>
 </div>
 
-<div class="popup-background" [class.closed]="!loginVisible">
+<div class="popup-background" [class.closed]="!loginVisible()">
     <div class="login-popup popup">
         <div class="popup-close" (click)="hideLogin()"></div>
 
-        <form class="login-form">
-            <input name="email" type="text" [(ngModel)]="email" placeholder="Korisničko ime" required>
+        <form class="login-form" #loginForm="ngForm" (ngSubmit)="submitForm(loginForm)">
+            @if(registrationVisible()){
+            <input name="displayName" type="text" placeholder="Ime i prezime" required>
+            }
+            <input name="email" type="text" [(ngModel)]="email" placeholder="E-mail" required>
             <input name="password" type="password" [(ngModel)]="password" placeholder="Lozinka" required>
-            <button type="submit" (click)="login()">Prijava</button>
+
+            <div class="login-options">
+                <button type="submit" class="submit-button">{{registrationVisible() ? 'Registracija' : 'Prijava'}}</button>
+
+                @if(registrationVisible() == false){
+                <button type="button" class="google-button" (click)="loginWithGoogle()">Google prijava</button>
+                <p class="registration">Prvi put si tu? <a (click)="showRegistration()">Registriraj se</a></p>
+                }
+                @else {
+                <p class="registration">Imaš profil? <a (click)="showLogin()">Prijavi se</a></p>
+                }
+            </div>
+            
         </form>
     </div>
 </div>

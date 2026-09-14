@@ -1,7 +1,12 @@
 :root {
   --primary-dark-color: #00323b;
   --primary-light-color: #fff;
+  --primary-transparency: #ffffffe0;
+  --secondary-transparency: #ffffff81;
+  --primary-background-color: #d6d1d1;
   --hover-color: #47abb5;
+  --pink-hover-color: #f49195;
+  --secondary-hover-color: #7eb0b9;
   --scroll-color: #0b7e84;
   --blue: #08869c;
   --warning-red: #ce4047;
@@ -84,6 +89,10 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
+}
+
+input.ng-touched.ng-invalid{
+  border-bottom: 1px solid var(--warning-red);
 }
 
 /* homepage */

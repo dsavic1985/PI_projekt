@@ -2,9 +2,13 @@ import { inject, Service } from '@angular/core';
 import {
   Auth,
   browserSessionPersistence,
+  createUserWithEmailAndPassword,
   getAuth,
+  GoogleAuthProvider,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
+  updateProfile,
   User,
 } from 'firebase/auth';
 import { setPersistence, connectAuthEmulator } from 'firebase/auth';
@@ -64,6 +68,34 @@ export class AuthService {
       } catch (e){
         alert("AuthService Error saving user data: " + ErrorHelper.getMessage(e));
       }
+    }
+  }
+
+  async loginWithGoogle(){
+    const provider = new GoogleAuthProvider();
+    const result = await signInWithPopup(
+      this.firebaseAuth,
+      provider,
+    );
+
+    try{
+      await this.dataAccess.createUserIfNotExists(result.user);
+    }
+    catch(e){
+      alert("Registration error: " + ErrorHelper.getMessage(e));
+    }
+  }
+
+  async register(email: string, password: string, displayName: string){
+    try{
+      const result = await createUserWithEmailAndPassword(this.firebaseAuth, email, password);
+      await updateProfile(result.user, {
+        displayName: displayName,
+      });
+      await this.dataAccess.createUserIfNotExists(result.user);
+    }
+    catch(e){
+      alert("Registration error: " + ErrorHelper.getMessage(e));
     }
   }
 
