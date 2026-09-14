@@ -8,8 +8,14 @@
  */
 
 import {setGlobalOptions} from "firebase-functions";
-// import {onRequest} from "firebase-functions/https";
-// import * as logger from "firebase-functions/logger";
+import {onRequest, Request} from "firebase-functions/https";
+import * as logger from "firebase-functions/logger";
+import * as express from "express";
+import {getAuth} from "firebase-admin/auth";
+import {initializeApp} from "firebase-admin/app";
+import { getPlayer, updatePlayer } from "@dataconnect/admin-generated";
+
+initializeApp();
 
 // Start writing functions
 // https://firebase.google.com/docs/functions/typescript
@@ -26,7 +32,64 @@ import {setGlobalOptions} from "firebase-functions";
 // this will be the maximum concurrent request count.
 setGlobalOptions({maxInstances: 10});
 
-// export const helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+async function validateAuthGetUid(request: Request, response: express.Response): Promise<string> {
+  const authHeader = request.headers.authorization;
+
+  if (!authHeader?.startsWith("Bearer ")) {
+    response.status(401).send("Unauthenticated");
+    return "";
+  }
+
+  try {
+    const idToken = authHeader.substring("Bearer ".length);
+    const decodedToken = await getAuth().verifyIdToken(idToken);
+    const uid = decodedToken.uid;
+
+    console.log("Authenticated UID:", uid);
+    return uid;
+  } catch (error) {
+    logger.error(error);
+    response.status(401).send("Invalid authentication");
+  }
+  return "";
+}
+
+
+exports.updatePlayer = onRequest(async (request, response) => {
+  if (!request.body) {
+    response.status(400).send("Request body empty");
+    return;
+  }
+
+  const userUid = await validateAuthGetUid(request, response);
+  logger.info("updatePlayer req: " + request.body);
+
+  const {playerId, name, born, avatarId} = request.body;
+
+  if (!playerId) {
+    response.status(400).send("Request body not containing 'playerId'");
+    return;
+  }
+  
+  const getData = {
+    playerId: playerId,
+    userId: userUid,
+  }
+  const players = await getPlayer(getData);
+  const player = players.data.players[0];
+
+  if (player){
+    const updateData = {
+      playerId: playerId,  
+      name: name ?? player.name,
+      born: born ?? player.born,
+      avatarId: avatarId ?? player.avatarId,
+    }
+    await updatePlayer(updateData);
+    response.send({status: "ok"});
+    return;
+  }
+
+  response.status(404).send({status: "not found"});
+});
+

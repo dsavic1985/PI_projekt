@@ -5,6 +5,7 @@ import { FormsModule, NgForm, ValidationErrors } from '@angular/forms';
 import { DataAccessService } from '../data-access-service';
 import { AuthService } from '../auth-service';
 import { ErrorHelper } from '../error-helper';
+import { FunctionsAccessService } from '../functions-access-service';
 import { AvatarHelper } from '../avatar-helper';
 
 @Component({
@@ -28,6 +29,7 @@ export class PlayerInfo implements OnInit {
 
   private activatedRoute = inject(ActivatedRoute);
   private dataAccess = inject(DataAccessService);
+  private functionsAccess = inject(FunctionsAccessService);
   private auth = inject(AuthService);
   private router = inject(Router);
 
@@ -83,6 +85,7 @@ export class PlayerInfo implements OnInit {
         this.player.avatarId = this.playerAvatarId();
 
         if (this.playerId()){
+          await this.functionsAccess.updatePlayer(this.player);
         }
         else{
           await this.dataAccess.addPlayer(this.player);
