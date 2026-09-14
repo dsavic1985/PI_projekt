@@ -28,8 +28,8 @@
     c1.83,0.094,3.675,0.173,5.536,0.236" />
             </g>
 
-            <g routerLink="/math-levels/math-1/{{playerId}}">
-                <path fill="#00323B" d="M482,811.628C482,833.925,464.141,852,442.11,852H352.89c-22.03,0-39.89-18.075-39.89-40.372v-90.256
+            <g routerLink="/math-levels/math-1/{{playerId}}" >
+                <path fill="#00323B" [class.level-finished]="highestLevel() >= 1" d="M482,811.628C482,833.925,464.141,852,442.11,852H352.89c-22.03,0-39.89-18.075-39.89-40.372v-90.256
     C313,699.075,330.859,681,352.89,681h89.221c22.03,0,39.89,18.075,39.89,40.372V811.628z" 
                     />
                 <path fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2.2408" stroke-linecap="round"

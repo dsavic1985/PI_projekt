@@ -342,6 +342,10 @@ input.ng-touched.ng-invalid{
   padding: 150px 100px 0 350px;
 }
 
+.levels-intro .level-finished{
+  fill: var(--blue);
+}
+
 .chapters-svg,
 .inline-svg {
   width: 90%;
