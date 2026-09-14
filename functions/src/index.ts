@@ -13,7 +13,7 @@ import * as logger from "firebase-functions/logger";
 import * as express from "express";
 import {getAuth} from "firebase-admin/auth";
 import {initializeApp} from "firebase-admin/app";
-import { getPlayer, updatePlayer } from "@dataconnect/admin-generated";
+import { deletePlayer, getPlayer, updatePlayer } from "@dataconnect/admin-generated";
 
 initializeApp();
 
@@ -93,3 +93,36 @@ exports.updatePlayer = onRequest(async (request, response) => {
   response.status(404).send({status: "not found"});
 });
 
+
+exports.deletePlayer = onRequest(async (request, response) => {
+  if (!request.body) {
+    response.status(400).send("Request body empty");
+    return;
+  }
+
+  const userUid = await validateAuthGetUid(request, response);
+  logger.info("deletePlayer req: " + request.body);
+
+  const {playerId} = request.body;
+
+  if (!playerId) {
+    response.status(400).send("Request body not containing 'playerId'");
+    return;
+  }
+  
+  const getData = {
+    playerId: playerId,
+    userId: userUid,
+  }
+  const player = await getPlayer(getData);
+  if (player.data.players.length > 0){
+    const deleteData = {
+      playerId: playerId,
+    }
+    await deletePlayer(deleteData);
+    response.send({status: "ok"});
+    return;
+  }
+
+  response.status(404).send({status: "not found"});
+});

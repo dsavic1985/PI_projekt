@@ -30,6 +30,18 @@ export class FunctionsAccessService {
     console.log("Player update: " + JSON.stringify(res));
   }
 
+  async deletePlayer(playerId: string): Promise<void>{
+    let data = {
+      playerId: playerId,
+    }
+    const options = await this.getHttpOptions();
+
+    let response = await this.httpClient.post(this.functionsBaseUrl + "/deletePlayer", data, options);
+    let res = await lastValueFrom(response);
+    console.log("Player deletion: " + JSON.stringify(res));
+  }
+
+
   private async getHttpOptions(): Promise<HttpClientCommonOptions>{
     const authToken = await this.authService.getAuthToken();
     const options = { 

@@ -48,17 +48,17 @@ export class PlayerInfo implements OnInit {
   async ngOnInit(): Promise<void> {
     if (this.playerId()){
       try{
-      let player = await this.dataAccess.getPlayer(this.playerId());
-      if (player){
-        this.player = player;
-        this.playerName.set(player.name);
-        this.playerBorn.set(this.player.born.toISOString().split("T")[0]);
-        this.playerAvatarId.set(player.avatarId);
-      }
+        let player = await this.dataAccess.getPlayer(this.playerId());
+        if (player){
+          this.player = player;
+          this.playerName.set(player.name);
+          this.playerBorn.set(this.player.born.toISOString().split("T")[0]);
+          this.playerAvatarId.set(player.avatarId);
+        }
         else{
           await this.router.navigate(['/dashboard']);
-    }
-  }
+         }
+       }
       catch(e){
         alert(ErrorHelper.getMessage(e));
         await this.router.navigate(['/dashboard']);
@@ -94,7 +94,7 @@ export class PlayerInfo implements OnInit {
       }
       catch(e){
         alert(ErrorHelper.getMessage(e));
-    }
+      }
     }
     else{
       let errors: ValidationErrors[] = [];
@@ -103,7 +103,7 @@ export class PlayerInfo implements OnInit {
           let error = form.form.controls[key].errors;
           if (error)
             errors.push(error);
-  }
+        }
       }
       console.log("form invalid: "+JSON.stringify(errors));
     }
@@ -129,6 +129,16 @@ export class PlayerInfo implements OnInit {
 
   hideDelete(){
     this.deletePopupVisible.set(false);
+  }
+
+  async confirmDelete(){
+    try{
+      await this.functionsAccess.deletePlayer(this.playerId());
+      await this.router.navigate(['/dashboard']);
+    }
+    catch(e){
+      alert("Error: " + ErrorHelper.getMessage(e));
+    }
   }
 
   async logout(){
