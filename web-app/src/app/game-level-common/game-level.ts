@@ -1,8 +1,12 @@
 import { inject, signal } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { GameSession } from "../models/gameSession";
+import { ErrorHelper } from "../error-helper";
+import { FunctionsAccessService } from "../functions-access-service";
 
 export abstract class GameLevel {
   private activatedRoute = inject(ActivatedRoute);
+  private functionsAccess = inject(FunctionsAccessService);
 
   playerId = "";
 
@@ -22,12 +26,27 @@ export abstract class GameLevel {
     this.startedAt.set(new Date());
   }
   
-  finish(){
-    let msDiff = Date.now() - (this.startedAt() ?? new Date()).getTime();
-    let durationSec = Math.floor(msDiff / 1000);
+  async finish(): Promise<void>{
+    const msDiff = Date.now() - (this.startedAt() ?? new Date()).getTime();
+    const durationSec = Math.floor(msDiff / 1000);
 
     this.durationSeconds.set(durationSec);
     this.isFinished.set(true);
+
+    try{
+      const session: GameSession = {
+        playerId: this.playerId,
+        chapter: this.chapterName,
+        level: this.chapterLevel,
+        durationSeconds: durationSec,
+        playedAt: new Date(),
+        score: this.score(),
+      };
+      await this.functionsAccess.saveGameSession(session);
+    }
+    catch(e){
+      alert(ErrorHelper.getMessage(e));
+    }
   }
 
   restart(){

@@ -13,7 +13,7 @@ import * as logger from "firebase-functions/logger";
 import * as express from "express";
 import {getAuth} from "firebase-admin/auth";
 import {initializeApp} from "firebase-admin/app";
-import { deletePlayer, getPlayer, updatePlayer } from "@dataconnect/admin-generated";
+import { deletePlayer, getPlayer, saveGameSession, updatePlayer } from "@dataconnect/admin-generated";
 
 initializeApp();
 
@@ -126,3 +126,64 @@ exports.deletePlayer = onRequest(async (request, response) => {
 
   response.status(404).send({status: "not found"});
 });
+
+
+exports.saveGameSession = onRequest(async (request, response) => {
+  if (!request.body) {
+    response.status(400).send("Request body empty");
+    return;
+  }
+
+  const userUid = await validateAuthGetUid(request, response);
+
+  console.log("saveGameSession req: " + request.body);
+
+  const {playerId, chapter, level, score, durationSeconds, playedAt} = request.body;
+
+  if (!playerId) {
+    response.status(400).send("Request body not containing 'playerId'");
+    return;
+  }
+  if (!chapter) {
+    response.status(400).send("Request body not containing 'chapter'");
+    return;
+  }
+  if (!level) {
+    response.status(400).send("Request body not containing 'level'");
+    return;
+  }
+  if (score === undefined || score === null) {
+    response.status(400).send("Request body not containing 'score'");
+    return;
+  }
+  if (durationSeconds === undefined || durationSeconds === null) {
+    response.status(400).send("Request body not containing 'durationSeconds'");
+    return;
+  }
+  if (!playedAt) {
+    response.status(400).send("Request body not containing 'playedAt'");
+    return;
+  }
+  
+  const getData = {
+    playerId: playerId,
+    userId: userUid,
+  }
+  const player = await getPlayer(getData);
+  if (player.data.players.length > 0){
+    const saveData = {
+      playerId: playerId,
+      chapter: chapter,
+      level: level,
+      score: score,
+      durationSeconds: durationSeconds,
+      playedAt: playedAt,
+    }
+    await saveGameSession(saveData);
+    response.send({status: "ok"});
+    return;
+  }
+
+  response.status(404).send({status: "not found"});
+});
+

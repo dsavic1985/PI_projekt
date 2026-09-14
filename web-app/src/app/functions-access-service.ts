@@ -4,6 +4,7 @@ import { HttpClient, HttpClientCommonOptions } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { lastValueFrom } from 'rxjs';
 import { Player } from './models/player';
+import { GameSession } from './models/gameSession';
 
 @Service()
 export class FunctionsAccessService {
@@ -41,6 +42,21 @@ export class FunctionsAccessService {
     console.log("Player deletion: " + JSON.stringify(res));
   }
 
+  async saveGameSession(session: GameSession): Promise<void>{
+    let data = {
+      chapter: session.chapter,
+      level: session.level,
+      score: session.score,
+      durationSeconds: session.durationSeconds,
+      playedAt: session.playedAt.toISOString(),
+      playerId: session.playerId,
+    }
+    const options = await this.getHttpOptions();
+
+    let response = await this.httpClient.post(this.functionsBaseUrl + "/saveGameSession", data, options);
+    let res = await lastValueFrom(response);
+    console.log("saveGameSession: " + JSON.stringify(res));
+  }
 
   private async getHttpOptions(): Promise<HttpClientCommonOptions>{
     const authToken = await this.authService.getAuthToken();
