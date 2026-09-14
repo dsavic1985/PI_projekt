@@ -1,0 +1,4 @@
+
+query GetPlayer($playerId: UUID!, $userId: String!) {
+  players(where: { userId: { eq: $userId }, id: { eq: $playerId } }, limit: 100) { id, name, born, avatarId }
+}

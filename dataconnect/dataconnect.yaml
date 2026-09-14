@@ -12,4 +12,5 @@ schemas:
           # schemaValidation: "COMPATIBLE" # COMPATIBLE mode makes Postgres schema compatible with Data Connect.
 connectorDirs: [
   "./connectorWebApp", 
+  "./connectorFunctions",
 ]

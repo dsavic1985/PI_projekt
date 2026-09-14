@@ -1,0 +1,12 @@
+
+mutation DeletePlayer($playerId: UUID!) {
+  player_delete(key: { id: $playerId })
+}
+
+mutation UpdatePlayer($playerId: UUID!, $name: String!, $born: Date!, $avatarId: Int!) {
+  player_update(key: { id: $playerId }, data: { name: $name, born: $born, avatarId: $avatarId })
+}
+
+mutation SaveGameSession($playerId: UUID!, $chapter: String!, $level: Int!, $score: Int!, $durationSeconds: Int!, $playedAt: Timestamp!) {
+  gameSession_insert(data: { chapter: $chapter, level: $level, score: $score, durationSeconds: $durationSeconds, playedAt: $playedAt, playerId: $playerId })
+}
