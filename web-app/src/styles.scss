@@ -563,13 +563,12 @@ input.ng-touched.ng-invalid{
 
 @media (800px < width < 1440px) and (orientation: landscape) {
   /* chapters */
-  .chapter-title img {
+  .inline-svg.chapter-title img {
     width: 200px;
   }
 
   /* levels */
   .inline-svg {
-    max-width: 70vw;
     padding-left: 100px;
   }
 
@@ -597,6 +596,36 @@ input.ng-touched.ng-invalid{
   .single-letter p {
     font-size: 2.5rem;
     margin-inline: 10px;
+  }
+  
+  .chapter-title img {
+    width: 200px;
+  }
+}
+
+@media (width < 800px) and (orientation: landscape) {
+  .levels-intro {
+    padding: 120px 0 0 50px;
+  }
+
+  .main-container .app-logo {
+    width: 25vw;
+  }
+
+  .inline-svg {
+    padding-left: 50px;
+  }
+  
+  .chapter-title img {
+    width: 200px;
+  }
+}
+
+@media (orientation: portrait) {
+  .portrait-levels {
+    max-height: 60vh;
+    display: block;
+    margin-inline: auto;
   }
 }
 

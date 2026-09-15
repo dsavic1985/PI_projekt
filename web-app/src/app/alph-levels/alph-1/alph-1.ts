@@ -19,7 +19,7 @@ export class Alph1 extends GameLevel implements OnInit {
   override chapterLevel: number = 1;
 
   readonly answers = new Map([
-    [1, "lišče"],
+    [1, "lišće"],
     [2, "jabuke"],
     [3, "oblak"],
   ]);
