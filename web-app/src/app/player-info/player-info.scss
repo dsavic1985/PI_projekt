@@ -1,38 +1,30 @@
-.delete-popup{
-  background-color: var(--primary-dark-color);
-  border-radius: 50px;
-  padding: 50px 100px;
-  width: fit-content;
-}
-
-.delete-popup p {
-  margin-bottom: 20px;
-  color: var(--primary-light-color);
-  text-align: center;
-}
-
-.delete-popup button {
+.dark-popup button {
   background-color: var(--warning-red);
-  width: fit-content;
   margin-bottom: 15px;
 }
 
-.delete-popup button:hover {
-  background-color: var(--hover-color);
+.dark-popup button:hover {
+  background-color: var(--primary-hover-color);
+}
+
+.form-info-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.form-info-buttons button {
+  margin-inline: 20px;
 }
 
 .delete-button {
-  height: fit-content;
-  background-color: var(--hover-color);
+  background-color: var(--warning-red);
 }
 
 .delete-button:hover {
   background-color: var(--primary-dark-color);
-}
-
-.form-info-buttons button {
-  display: inline-block;
-  margin-inline: 20px;
 }
 
 /* avatar picker */
@@ -51,25 +43,24 @@
 
 .avatar-picker img {
   display: inline-block;
-  background-color: #ffffff81;
-  border: 4px solid #ffffff81;
+  background-color: var(--secondary-transparency);
+  border: 4px solid var(--secondary-transparency);
   padding: 30px;
   border-radius: 50px;
-  cursor: pointer;
 }
 
 .avatar-picker img:hover {
-  background-color: #7eb0b9;
+  background-color: var(--secondary-hover-color);
 }
 
 .avatar-picker img:active {
-  background-color: #ffffff81;
-  border: 4px solid #7eb0b9;
+  background-color: var(--secondary-transparency);
+  border: 4px solid var(--secondary-hover-color);
 }
 
 .avatar-picker img.picked {
-  background-color: #ffffff81;
-  border: 4px solid #7eb0b9;
+  background-color: var(--secondary-transparency);
+  border: 4px solid var(--secondary-hover-color);
 }
 
 .avatar-button {

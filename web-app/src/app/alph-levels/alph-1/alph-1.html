@@ -10,7 +10,7 @@
 </div>
 
 @if(isFinished() == false){
-<div class="levels-intro">
+<div class="levels-intro alph-intro">
     <div class="level-svg">
         <div class="level-content">
             @if(step() == 1){
@@ -39,7 +39,7 @@
 
         <svg x="0px" y="0px" width="539.833px" height="260.807px" viewBox="0 0 539.833 260.807"
             enable-background="new 0 0 539.833 260.807" xml:space="preserve">
-            <g (click)="addLetter('E', letterE)">
+            <g (click)="addLetter('E', letterE)" class="show-pointer">
                 <circle #letterE fill="#00323B" cx="35.989" cy="130.454" r="35.989" />
                 <g>
                     <path fill="#FFFFFF" d="M25.046,113.733h21.681c1.567,0.153,2.352,0.801,2.352,1.943v0.409c0,1.142-0.785,1.79-2.352,1.943H27.194
@@ -48,7 +48,7 @@ c1.567,0.153,2.352,0.801,2.352,1.943v0.409c0,1.142-0.785,1.79-2.352,1.943H25.353
 C23.154,114.449,23.87,113.733,25.046,113.733z" />
                 </g>
             </g>
-            <g (click)="addLetter('U', letterU)">
+            <g (click)="addLetter('U', letterU)" class="show-pointer">
                 <circle #letterU fill="#00323B" cx="129.56" cy="130.454" r="35.989" />
                 <g>
                     <path fill="#FFFFFF" d="M116.163,113.631h0.41c1.142,0,1.789,0.784,1.943,2.352v18.92c0,1.415,0.784,3.017,2.352,4.807
@@ -58,7 +58,7 @@ c-1.978,0.545-3.75,0.818-5.318,0.818h-0.409c-5.88,0-10.449-2.522-13.704-7.568c-0
 C114.373,114.416,115.021,113.631,116.163,113.631z" />
                 </g>
             </g>
-            <g (click)="addLetter('D', letterD)">
+            <g (click)="addLetter('D', letterD)" class="show-pointer">
                 <circle #letterD fill="#00323B" cx="223.131" cy="130.454" r="35.989" />
                 <g>
                     <path fill="#FFFFFF"
@@ -68,7 +68,7 @@ C208.711,114.449,209.427,113.733,210.603,113.733z M212.751,118.029v24.852h10.124
 c2.659-2.607,3.988-5.676,3.988-9.204c0-4.397-2.114-7.977-6.341-10.738c-1.978-1.09-3.749-1.636-5.317-1.636H212.751z" />
                 </g>
             </g>
-            <g (click)="addLetter('L', letterL)">
+            <g (click)="addLetter('L', letterL)" class="show-pointer">
                 <circle #letterL fill="#00323B" cx="316.702" cy="130.454" r="35.989" />
                 <g>
                     <path fill="#FFFFFF" d="M306.043,113.733h0.404c1.128,0,1.768,0.775,1.919,2.324v26.875h18.591
@@ -76,7 +76,7 @@ c1.549,0.151,2.323,0.791,2.323,1.919v0.404c0,1.129-0.774,1.769-2.323,1.92h-20.40
 v-28.694C304.275,114.508,304.916,113.733,306.043,113.733z" />
                 </g>
             </g>
-            <g (click)="addLetter('B', letterB)">
+            <g (click)="addLetter('B', letterB)" class="show-pointer">
                 <circle #letterB fill="#00323B" cx="410.273" cy="130.454" r="35.988" />
                 <g>
                     <path fill="#FFFFFF" d="M414.518,113.733c4.141,0,7.072,2.114,8.794,6.341c0.273,0.887,0.41,1.841,0.41,2.864
@@ -89,7 +89,7 @@ c0.136-0.307,0.204-0.784,0.204-1.432c0-2.045-1.159-3.511-3.477-4.397c-0.308-0.13
 c0-2.574-1.432-4.346-4.296-5.318c-0.46-0.068-0.835-0.103-1.124-0.103H400.302z" />
                 </g>
             </g>
-            <g (click)="addLetter('O', letterO)">
+            <g (click)="addLetter('O', letterO)" class="show-pointer">
                 <circle #letterO fill="#00323B" cx="503.844" cy="130.454" r="35.988" />
                 <g>
                     <path fill="#FFFFFF" d="M503.639,113.375h0.41c6.289,0,11.3,3.034,15.033,9.102c1.228,2.727,1.841,5.318,1.841,7.772v0.409
@@ -100,7 +100,7 @@ c1.567-2.301,2.352-4.79,2.352-7.465c0-4.142-1.875-7.653-5.624-10.534c-2.303-1.56
 c-4.143,0-7.654,1.875-10.534,5.625C491.64,125.392,490.856,127.881,490.856,130.557z" />
                 </g>
             </g>
-            <g (click)="addLetter('J', letterJ)">
+            <g (click)="addLetter('J', letterJ)" class="show-pointer">
                 <circle #letterJ fill="#00323B" cx="35.989" cy="224.817" r="35.989" />
                 <g>
                     <path fill="#FFFFFF" d="M46.829,207.739h0.41c1.142,0,1.789,0.784,1.943,2.352v17.386c0,6.682-2.965,11.25-8.897,13.704
@@ -110,14 +110,14 @@ c1.636,0.954,3.307,1.432,5.011,1.432c3.443,0,6.17-1.84,8.182-5.522c0.477-1.261,0
 C45.04,208.522,45.688,207.739,46.829,207.739z" />
                 </g>
             </g>
-            <g (click)="addLetter('I', letterI)">
+            <g (click)="addLetter('I', letterI)" class="show-pointer">
                 <circle #letterI fill="#00323B" cx="129.56" cy="224.817" r="35.989" />
                 <g>
                     <path fill="#FFFFFF" d="M129.356,207.943h0.408c1.139,0,1.784,0.782,1.938,2.346v29.059c-0.153,1.563-0.799,2.345-1.938,2.345
 h-0.408c-1.139,0-1.784-0.781-1.938-2.345v-29.059C127.572,208.726,128.217,207.943,129.356,207.943z" />
                 </g>
             </g>
-            <g (click)="addLetter('Č', letterCH)">
+            <g (click)="addLetter('Č', letterCH)" class="show-pointer">
                 <circle #letterCH fill="#00323B" cx="223.131" cy="224.817" r="35.989" />
                 <g>
                     <path fill="#FFFFFF" d="M234.674,239.146c-0.534,0-1.115,0.275-1.557,0.824c-2.289,2.32-4.991,3.48-8.013,3.48
@@ -136,7 +136,7 @@ c-0.021-0.02-0.042-0.041-0.064-0.059c-0.39-0.321-0.79-0.483-1.187-0.483c-0.389,0
 c-0.476,0.476-0.714,1.311,0.039,2.227C214.981,205.799,215.001,205.821,215.021,205.841z" />
                 </g>
             </g>
-            <g (click)="addLetter('K', letterK)">
+            <g (click)="addLetter('K', letterK)" class="show-pointer">
                 <circle #letterK fill="#00323B" cx="316.702" cy="224.817" r="35.989" />
                 <g>
                     <path fill="#FFFFFF" d="M305.043,207.943h0.409c1.142,0,1.79,0.785,1.943,2.353v15.136l18.716-17.284
@@ -147,7 +147,7 @@ c-0.154,1.569-0.801,2.354-1.943,2.354h-0.409c-1.142,0-1.79-0.784-1.943-2.354v-29
 C303.254,208.728,303.902,207.943,305.043,207.943z" />
                 </g>
             </g>
-            <g (click)="addLetter('Š', letterSH)">
+            <g (click)="addLetter('Š', letterSH)" class="show-pointer">
                 <circle #letterSH fill="#00323B" cx="410.273" cy="224.817" r="35.988" />
                 <g>
                     <path fill="#FFFFFF" d="M420.908,233.28c-0.994-1.069-3.377-1.986-6.662-2.75c-3.883-0.489-6.632-0.856-8.009-1.101
@@ -169,7 +169,7 @@ c-0.391-0.321-0.79-0.483-1.188-0.483c-0.39,0-0.75,0.153-1.041,0.444l-0.099,0.098
 C401.562,205.392,401.582,205.413,401.602,205.434z" />
                 </g>
             </g>
-            <g (click)="addLetter('A', letterA)">
+            <g (click)="addLetter('A', letterA)" class="show-pointer">
                 <circle #letterA fill="#00323B" cx="503.844" cy="224.817" r="35.988" />
                 <g>
                     <path fill="#FFFFFF" d="M503.844,207.893c1.057,0,1.841,0.682,2.353,2.046c9.698,18.766,14.709,28.549,15.033,29.351v0.613
@@ -185,16 +185,16 @@ c0-0.358,0.955-2.301,2.864-5.829c8.181-16.091,12.477-24.408,12.886-24.954C502.75
 }
 @else {
 <div class="main-intro">
-    <div class="level-popup">
+    <div class="dark-popup popup">
         <img src="images/emoji.svg" alt="" class="emoji-icon">
 
         <p>VRIJEME: {{durationSeconds() | secondsToDurationString}} min</p>
         <p>OCJENA: {{score()}}/10</p>
 
         <div class="controls">
-            <div class="level-back-icon" routerLink="/math-levels/{{playerId}}"></div>
-            <div class="history-icon" (click)="restart()"></div>
-            <div class="start-icon" routerLink="/math-levels/{{playerId}}"></div>
+            <div class="previous-icon" routerLink="/math-levels/{{playerId}}"></div>
+            <div class="retry-icon" (click)="restart()"></div>
+            <div class="next-icon" routerLink="/math-levels/{{playerId}}"></div>
         </div>
     </div>
 </div>

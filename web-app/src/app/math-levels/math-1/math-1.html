@@ -22,7 +22,7 @@
         <svg class="content-select" viewBox="314.322 388.355 338.34 152.734"
             enable-background="new 314.322 388.355 338.34 152.734" xml:space="preserve">
 
-            <g (click)="answerCurrentStep(true, answer1True)" >
+            <g (click)="answerCurrentStep(true, answer1True)" class="show-pointer">
                 <circle #answer1True fill="#00323B" cx="390.69" cy="464.722" r="76.367"/>
                 <path fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.8322" stroke-linecap="round"
                     stroke-linejoin="round" stroke-miterlimit="10" d="
@@ -33,7 +33,7 @@ c9.427-16.57,14.463-25.295,15.107-26.174C395.345,435.591,396.281,435.181,397.277
 c-0.352,0.82-4.1,7.438-11.243,19.851h11.419v-19.851H393.237z" />
             </g>
 
-            <g (click)="answerCurrentStep(false, answer1False)">
+            <g (click)="answerCurrentStep(false, answer1False)" class="show-pointer">
                 <circle #answer1False fill="#00323B" cx="576.295" cy="464.722" r="76.367"/>
                 <path fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.8322" stroke-linecap="round"
                     stroke-linejoin="round" stroke-miterlimit="10" d="
@@ -53,7 +53,7 @@ l20.202-36.187h-27.053c-2.811-0.352-4.216-1.464-4.216-3.338v-0.878c0-1.991,1.347
         <svg class="content-select" viewBox="314.322 388.355 338.34 152.734"
             enable-background="new 314.322 388.355 338.34 152.734" xml:space="preserve">
 
-            <g (click)="answerCurrentStep(true, answer2True)">
+            <g (click)="answerCurrentStep(true, answer2True)" class="show-pointer">
                 <circle #answer2True fill="#00323B" cx="390.69" cy="464.722" r="76.367" />
                 <path fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.8322" stroke-linecap="round"
                     stroke-linejoin="round" stroke-miterlimit="10" d="
@@ -63,7 +63,7 @@ v-0.526c0-0.967,1.933-4.714,5.797-11.243l20.202-36.187h-27.053c-2.811-0.352-4.21
 c0-1.991,1.347-3.162,4.04-3.514H407.114z" />
             </g>
 
-            <g (click)="answerCurrentStep(false, answer2False)">
+            <g (click)="answerCurrentStep(false, answer2False)" class="show-pointer">
             <circle #answer2False fill="#00323B" cx="576.295" cy="464.722" r="76.367" />
                 <path fill="#FFFFFF" d="M575.943,435.123h0.704c8.222,0,14.624,2.878,19.204,8.634c1.645,2.466,2.467,4.816,2.467,7.047v1.233
 c0,4.2-2.467,8.135-7.4,11.805c6.107,3.554,9.162,7.84,9.162,12.862v1.232c0,5.99-4.229,10.865-12.686,14.623
@@ -89,7 +89,7 @@ C561.848,450.01,561.672,450.715,561.672,451.508z" />
             enable-background="new 314.322 388.355 338.34 152.734" xml:space="preserve">
             <g>
 
-                <g (click)="answerCurrentStep(false, answer3False)">
+                <g (click)="answerCurrentStep(false, answer3False)" class="show-pointer">
                     <circle #answer3False fill="#00323B" cx="576.295" cy="464.722" r="76.367"/>
                     <g>
                         <path fill="#FFFFFF" d="M623.365,454.661c0,2.675-2.169,4.844-4.844,4.844h-83.313c-2.675,0-4.844-2.169-4.844-4.844v-0.313
@@ -101,7 +101,7 @@ C561.848,450.01,561.672,450.715,561.672,451.508z" />
                     </g>
                 </g>
 
-                <g (click)="answerCurrentStep(true, answer3True)">
+                <g (click)="answerCurrentStep(true, answer3True)" class="show-pointer">
                     <circle #answer3True fill="#00323B" cx="390.69" cy="464.722" r="76.367"/>
                     <g>
                         <g>
@@ -132,7 +132,7 @@ C561.848,450.01,561.672,450.715,561.672,451.508z" />
             enable-background="new 314.322 388.355 338.34 152.734" xml:space="preserve">
             <g>
 
-                <g (click)="answerCurrentStep(true, answer4True)">
+                <g (click)="answerCurrentStep(true, answer4True)" class="show-pointer">
                     <circle #answer4True fill="#00323B" cx="576.295" cy="464.722" r="76.367"/>
                     <path fill="#FFFFFF" d="M575.706,431.68h1.175c7.167,0,13.229,3.127,18.183,9.383c0.782,0.977,1.173,1.76,1.173,2.346v1.371
 c0,1.791-1.367,2.965-4.105,3.518c-1.66,0-3.227-1.174-4.692-3.518c-3.356-3.26-7.136-4.891-11.34-4.891
@@ -145,7 +145,7 @@ c0.912-1.953,1.369-3.91,1.369-5.863c0-6.715-3.65-11.602-10.949-14.664c-1.923-0.3
 c-6.029,0-10.724,3.26-14.078,9.777C561.368,471.208,561.043,473.098,561.043,474.692z" />
                 </g>
 
-                <g (click)="answerCurrentStep(false, answer4False)">
+                <g (click)="answerCurrentStep(false, answer4False)" class="show-pointer">
                     <circle #answer4False fill="#00323B" cx="390.69" cy="464.722" r="76.367"/>
                     <path fill="#FFFFFF" d="M390.299,431.875h0.782c9.124,0,16.229,3.194,21.313,9.579c1.824,2.737,2.737,5.346,2.737,7.822v1.369
 c0,4.661-2.737,9.025-8.212,13.101c6.778,3.942,10.167,8.7,10.167,14.271v1.369c0,6.648-4.692,12.058-14.078,16.229
@@ -168,16 +168,16 @@ C374.657,448.396,374.461,449.178,374.461,450.058z" />
 }
 @else {
 <div class="main-intro">
-    <div class="level-popup">
+    <div class="dark-popup popup">
         <img src="images/emoji.svg" alt="" class="emoji-icon">
 
         <p>VRIJEME: {{durationSeconds() | secondsToDurationString}} min</p>
         <p>OCJENA: {{score()}}/10</p>
 
         <div class="controls">
-            <div class="level-back-icon" routerLink="/math-levels/{{playerId}}"></div>
-            <div class="history-icon" (click)="restart()"></div>
-            <div class="start-icon" routerLink="/math-levels/{{playerId}}"></div>
+            <div class="previous-icon" routerLink="/math-levels/{{playerId}}"></div>
+            <div class="retry-icon" (click)="restart()"></div>
+            <div class="next-icon" routerLink="/math-levels/{{playerId}}"></div>
         </div>
     </div>
 </div>

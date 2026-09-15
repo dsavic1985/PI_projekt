@@ -33,6 +33,9 @@ export class Math1 extends GameLevel{
       else{
         this.storeMistake();
         sender.classList.add("answer-wrong");
+        setTimeout(() => {
+          sender.classList.remove("answer-wrong");
+        }, 700);
       }
     }
   }

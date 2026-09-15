@@ -4,10 +4,11 @@
   --primary-transparency: #ffffffe0;
   --secondary-transparency: #ffffff81;
   --primary-background-color: #d6d1d1;
-  --hover-color: #47abb5;
+  --primary-hover-color: #47abb5;
   --pink-hover-color: #f49195;
   --secondary-hover-color: #7eb0b9;
-  --scroll-color: #0b7e84;
+  --input-color: #ffffff00;
+  --level-green: #a3c661;
   --blue: #08869c;
   --warning-red: #ce4047;
   --fs-general: 1.1rem;
@@ -28,6 +29,12 @@
   font-family: "VarelaRound-Regular";
   font-size: var(--fs-general);
   color: var(--primary-dark-color);
+  background-repeat: no-repeat;
+  transition: all 0.3s ease;
+}
+
+*:focus {
+  outline: none;
 }
 
 html {
@@ -36,11 +43,31 @@ html {
   scroll-behavior: smooth;
 }
 
+/* heading h1 */
 h1 {
   text-align: center;
   margin-top: 40px;
   margin-bottom: 20px;
   font-size: 1.5rem;
+}
+
+/* colors custom class */
+.transparency-style {
+  background-color: var(--secondary-transparency);
+  border: 4px solid var(--secondary-transparency);
+}
+
+/* pointer elements*/
+a,
+button,
+.main-container .page-back, 
+.dashboard .header .back-icon,
+.dashboard .header .logout-icon,
+.controls div,
+.popup .popup-close,
+.avatar-picker img,
+.show-pointer {
+  cursor: pointer;
 }
 
 /* buttons */
@@ -52,11 +79,18 @@ button {
   border-radius: 20px;
   border: none;
   padding: 10px 35px;
-  cursor: pointer;
 }
 
 button:hover {
-  background-color: var(--hover-color);
+  background-color: var(--primary-hover-color);
+}
+
+.delete-button {
+  background-color: var(--warning-red);
+}
+
+.delete-button:hover {
+  background-color: var(--primary-dark-color);
 }
 
 /* form */
@@ -72,7 +106,7 @@ input {
   outline: none;
   border: none;
   border-bottom: 1px solid var(--blue);
-  background-color: #ffffff00;
+  background-color: var(--input-color);
 }
 
 input::placeholder {
@@ -96,16 +130,13 @@ input.ng-touched.ng-invalid{
 }
 
 /* homepage */
-
 .main-container .page-back {
   position: fixed;
   top: 20px;
   right: 20px;
   width: 45px;
   height: 40px;
-  cursor: pointer;
   background-image: url("assets/images/page_back.svg");
-  background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
@@ -119,7 +150,6 @@ input.ng-touched.ng-invalid{
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-right: 10vw;
 }
 
 .main-container .main-intro .app-name {
@@ -132,10 +162,6 @@ input.ng-touched.ng-invalid{
   position: fixed;
   top: 20px;
   left: 20px;
-}
-
-.main-container .main-intro button {
-  width: 200px;
 }
 
 /* dashboard */
@@ -162,7 +188,7 @@ input.ng-touched.ng-invalid{
   width: 80vw;
   height: fit-content;
   padding: 40px;
-  background-color: #ffffffe0;
+  background-color: var(--primary-transparency);
   border-radius: 30px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
   z-index: 1;
@@ -182,7 +208,6 @@ input.ng-touched.ng-invalid{
 
 .dashboard .header .back-icon {
   background-image: url(assets/images/page_back.svg);
-  background-repeat: no-repeat;
 }
 
 .dashboard .header .back-icon:hover {
@@ -201,7 +226,6 @@ input.ng-touched.ng-invalid{
 .dashboard .header .logout-icon {
   width: 43px;
   height: 43px;
-  cursor: pointer;
 }
 
 .dashboard .inner-panel {
@@ -212,25 +236,23 @@ input.ng-touched.ng-invalid{
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   justify-items: center;
   gap: 50px;
-  background-color: #d6d1d1;
+  background-color: var(--primary-background-color);
   border-radius: 15px;
   overflow-y: auto;
 }
 
 .dashboard .inner-panel .single-player {
+  @extend .transparency-style;
   width: fit-content;
   height: fit-content;
   padding: 50px;
   border-radius: 50px;
-  background-color: #ffffff81;
-  border: 4px solid #ffffff81;
 }
 
 .dashboard .inner-panel .single-player .name {
   text-transform: uppercase;
   font-size: 1.4rem;
   text-align: center;
-  color: var(--primary-light-color);
 }
 
 .dashboard .inner-panel .avatar {
@@ -248,7 +270,6 @@ input.ng-touched.ng-invalid{
 .controls div {
   width: 40px;
   height: 40px;
-  cursor: pointer;
 }
 
 .controls .settings-icon {
@@ -283,6 +304,30 @@ input.ng-touched.ng-invalid{
   background-image: url(assets/images/level_back_hover.svg);
 }
 
+.previous-icon {
+  background-image: url(assets/images/previous.svg);
+}
+
+.previous-icon:hover {
+  background-image: url(assets/images/previous_hover.svg);
+}
+
+.retry-icon {
+  background-image: url(assets/images/retry.svg);
+}
+
+.retry-icon:hover {
+  background-image: url(assets/images/retry_hover.svg);
+}
+
+.next-icon {
+  background-image: url(assets/images/next.svg);
+}
+
+.next-icon:hover {
+  background-image: url(assets/images/next_hover.svg);
+}
+
 /* single player info */
 .dashboard .player-panel {
   width: fit-content;
@@ -298,8 +343,7 @@ input.ng-touched.ng-invalid{
 }
 
 .dashboard .player-panel .single-avatar{
-  background-color: #ffffff81;
-  border: 4px solid #ffffff81;
+  @extend .transparency-style;
   padding: 30px;
   border-radius: 50px;
 }
@@ -309,8 +353,7 @@ input.ng-touched.ng-invalid{
 }
 
 .dashboard .player-panel input{
-  background-color: #ffffff81;
-  border: 2px solid #ffffff81;
+  @extend .transparency-style;
   border-radius: 15px;
 }
 
@@ -320,9 +363,14 @@ input.ng-touched.ng-invalid{
 
 /* player stats */
 .dashboard .player-panel .player-name {
+  @extend .transparency-style;
+  margin: 0 auto 50px auto;
+  padding: 6px 30px;
+  border-radius: 30px;
   text-align: center;
-  margin-bottom: 50px;
   text-transform: uppercase;
+  font-size: 1.5rem;
+  width: fit-content;
 }
 
 /* chapters */
@@ -336,14 +384,37 @@ input.ng-touched.ng-invalid{
   max-width: 450px;
 }
 
-/* levels */
+.chapters-svg .show-pointer circle:hover {
+  fill: var(--primary-dark-color);
+  transition: all 0.1s ease;
+}
 
+/* levels */
 .levels-intro {
   padding: 150px 100px 0 350px;
 }
 
+.alph-intro {
+  padding-top: 100px;
+}
+
+.inline-svg .show-pointer path:first-of-type:hover,
+.show-pointer circle:hover {
+  fill: var(--pink-hover-color);
+  transition: all 0.1s ease;
+}
+
 .levels-intro .level-finished{
-  fill: var(--blue);
+  fill: var(--level-green);
+}
+
+.level-svg {
+  @extend .transparency-style;
+  border-radius: 30px;
+  padding: 50px;
+  max-width: 50vw;
+  margin-inline: auto;
+  text-align: center;
 }
 
 .chapters-svg,
@@ -361,43 +432,12 @@ input.ng-touched.ng-invalid{
   margin-top: 100px;
 }
 
-.level-svg {
-  background-color: #ffffffb0;
-  border-radius: 30px;
-  padding: 50px;
-  width: 100%;
-  max-width: 50vw;
-  margin-inline: auto;
-  text-align: center;
-}
-
-/* single level popup & delete popup */
-.level-popup {
-  background-color: var(--primary-dark-color);
-  border-radius: 50px;
-  padding: 50px 100px;
-}
-
-.level-popup p {
-  margin-bottom: 20px;
-  color: var(--primary-light-color);
-  text-align: center;
-}
-
-.level-popup .controls {
-  margin-top: 40px;
-}
-
-.emoji-icon {
-  display: block;
-  margin: 0 auto 30px auto;
-}
-
 /* level close icon */
 .page-back.close-icon {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   background-image: url(assets/images/level_close.svg);
+  background-size: 30px;
 }
 
 .page-back.close-icon:hover {
@@ -414,20 +454,19 @@ input.ng-touched.ng-invalid{
   left: 0px;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,.6);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .popup-background.closed {
   display: none;
 }
 
-.popup{
+.popup {
   position: relative;
   margin: 0 auto;
-  background-color: var(--primary-light-color);
-  padding: 60px 100px 40px 100px;
-  border-radius: 20px;
-  width: 90%;
+  padding: 60px;
+  border-radius: 50px;
+  width: fit-content;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -438,11 +477,29 @@ input.ng-touched.ng-invalid{
   width: 20px;
   height: 20px;
   background-image: url("assets/images/close.svg");
-  cursor: pointer;
 }
 
 .popup .popup-close:hover {
   background-image: url("assets/images/close_hover.svg");
+}
+
+.dark-popup {
+  background-color: var(--primary-dark-color);
+}
+
+.dark-popup p {
+  margin-bottom: 20px;
+  color: var(--primary-light-color);
+  text-align: center;
+}
+
+.dark-popup .controls {
+  margin-top: 40px;
+}
+
+.emoji-icon {
+  display: block;
+  margin: 0 auto 30px auto;
 }
 
 /* alphabetical levels */
@@ -461,13 +518,13 @@ input.ng-touched.ng-invalid{
 }
 
 .answer-picked {
-  fill: #e4e893;
+  fill: var(--pink-hover-color);
 }
 
 .answer-correct {
-  fill: #9cc185;
+  fill: var(--level-green);
 }
 
 .answer-wrong {
-  fill: #e9000d;
+  fill: var(--warning-red);
 }
