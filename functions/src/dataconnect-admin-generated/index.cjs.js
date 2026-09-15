@@ -1,7 +1,7 @@
 const { validateAdminArgs } = require('firebase-admin/data-connect');
 
 const connectorConfig = {
-  connector: 'connectorFunctions',
+  connector: 'connector-functions',
   serviceId: 'deepiprojekt',
   location: 'us-east4'
 };

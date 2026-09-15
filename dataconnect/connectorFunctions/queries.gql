@@ -1,4 +1,4 @@
 
-query GetPlayer($playerId: UUID!, $userId: String!) {
+query GetPlayer($playerId: UUID!, $userId: String!) @auth(level: NO_ACCESS) {
   players(where: { userId: { eq: $userId }, id: { eq: $playerId } }, limit: 100) { id, name, born, avatarId }
 }

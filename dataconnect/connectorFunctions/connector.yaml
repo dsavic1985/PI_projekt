@@ -1,4 +1,4 @@
-connectorId: connectorFunctions
+connectorId: connector-functions
 generate:
   adminNodeSdk:
     - outputDir: ..\..\functions\src\dataconnect-admin-generated

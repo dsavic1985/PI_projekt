@@ -1,7 +1,7 @@
 import { validateAdminArgs } from 'firebase-admin/data-connect';
 
 export const connectorConfig = {
-  connector: 'connectorFunctions',
+  connector: 'connector-functions',
   serviceId: 'deepiprojekt',
   location: 'us-east4'
 };

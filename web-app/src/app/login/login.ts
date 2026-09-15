@@ -56,6 +56,11 @@ export class Login {
   }
 
   async loginWithGoogle(){
-    await this.auth.loginWithGoogle();
+    try{
+      await this.auth.loginWithGoogle();
+      await this.router.navigate(["/dashboard"]);
+    } catch(e){
+      alert("Greška prijave: " + e)
+    }
   }
 }

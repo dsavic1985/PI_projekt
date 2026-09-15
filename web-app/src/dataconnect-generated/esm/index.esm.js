@@ -1,7 +1,7 @@
 import { queryRef, executeQuery, validateArgsWithOptions, mutationRef, executeMutation, validateArgs, makeMemoryCacheProvider } from 'firebase/data-connect';
 
 export const connectorConfig = {
-  connector: 'connectorWebApp',
+  connector: 'connector-web-app',
   service: 'deepiprojekt',
   location: 'us-east4'
 };

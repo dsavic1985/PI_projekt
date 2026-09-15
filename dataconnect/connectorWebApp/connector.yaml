@@ -1,4 +1,4 @@
-connectorId: connectorWebApp
+connectorId: connector-web-app
 generate:
   javascriptSdk:
     - outputDir: ..\..\web-app\src\dataconnect-generated

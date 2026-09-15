@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "devbuild": "ng build --configuration development"
+    "devbuild": "ng build --configuration development",
+    "deploy": "firebase deploy --only hosting"
   },
   "private": true,
   "packageManager": "npm@10.9.8",

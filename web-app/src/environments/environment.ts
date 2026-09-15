@@ -1,6 +1,6 @@
 export const environment = {
   development: false,
-  functionsBaseUrl: "----",
+  functionsBaseUrl: "https://us-central1-pi-projekt-36c14.cloudfunctions.net",
   firebase: {
     apiKey: "AIzaSyDztTa1ItWWaU2NMpgRijuvpcAv7pq0DjU",
     authDomain: "pi-projekt-36c14.firebaseapp.com",

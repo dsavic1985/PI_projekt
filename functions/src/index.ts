@@ -13,7 +13,12 @@ import * as logger from "firebase-functions/logger";
 import * as express from "express";
 import {getAuth} from "firebase-admin/auth";
 import {initializeApp} from "firebase-admin/app";
-import { deletePlayer, getPlayer, saveGameSession, updatePlayer } from "@dataconnect/admin-generated";
+import {
+  deletePlayer,
+  getPlayer,
+  saveGameSession,
+  updatePlayer,
+} from "@dataconnect/admin-generated";
 
 initializeApp();
 
@@ -32,7 +37,14 @@ initializeApp();
 // this will be the maximum concurrent request count.
 setGlobalOptions({maxInstances: 10});
 
-async function validateAuthGetUid(request: Request, response: express.Response): Promise<string> {
+/**
+ * Validates the request authorization and gets the user UID
+ * @param {Request} request
+ * @param {express.Response} response
+ * @return {string}
+ */
+async function validateAuthGetUid(
+  request: Request, response: express.Response): Promise<string> {
   const authHeader = request.headers.authorization;
 
   if (!authHeader?.startsWith("Bearer ")) {
@@ -55,135 +67,166 @@ async function validateAuthGetUid(request: Request, response: express.Response):
 }
 
 
-exports.updatePlayer = onRequest(async (request, response) => {
-  if (!request.body) {
-    response.status(400).send("Request body empty");
-    return;
-  }
-
-  const userUid = await validateAuthGetUid(request, response);
-  logger.info("updatePlayer req: " + request.body);
-
-  const {playerId, name, born, avatarId} = request.body;
-
-  if (!playerId) {
-    response.status(400).send("Request body not containing 'playerId'");
-    return;
-  }
-  
-  const getData = {
-    playerId: playerId,
-    userId: userUid,
-  }
-  const players = await getPlayer(getData);
-  const player = players.data.players[0];
-
-  if (player){
-    const updateData = {
-      playerId: playerId,  
-      name: name ?? player.name,
-      born: born ?? player.born,
-      avatarId: avatarId ?? player.avatarId,
+exports.updatePlayer = onRequest(
+  {
+    cors: [
+      "http://127.0.0.1:5000",
+      "http://localhost:4200",
+      "https://pi-projekt-36c14.web.app",
+    ],
+  },
+  async (request, response) => {
+    if (!request.body) {
+      response.status(400).send("Request body empty");
+      return;
     }
-    await updatePlayer(updateData);
-    response.send({status: "ok"});
-    return;
-  }
 
-  response.status(404).send({status: "not found"});
-});
+    const userUid = await validateAuthGetUid(request, response);
+    logger.info("updatePlayer req: " + request.body);
 
+    const {playerId, name, born, avatarId} = request.body;
 
-exports.deletePlayer = onRequest(async (request, response) => {
-  if (!request.body) {
-    response.status(400).send("Request body empty");
-    return;
-  }
+    if (!playerId) {
+      response.status(400).send("Request body not containing 'playerId'");
+      return;
+    }
 
-  const userUid = await validateAuthGetUid(request, response);
-  logger.info("deletePlayer req: " + request.body);
-
-  const {playerId} = request.body;
-
-  if (!playerId) {
-    response.status(400).send("Request body not containing 'playerId'");
-    return;
-  }
-  
-  const getData = {
-    playerId: playerId,
-    userId: userUid,
-  }
-  const player = await getPlayer(getData);
-  if (player.data.players.length > 0){
-    const deleteData = {
+    const getData = {
       playerId: playerId,
+      userId: userUid,
+    };
+    const players = await getPlayer(getData);
+    const player = players.data.players[0];
+
+    if (player) {
+      const updateData = {
+        playerId: playerId,
+        name: name ?? player.name,
+        born: born ?? player.born,
+        avatarId: avatarId ?? player.avatarId,
+      };
+      await updatePlayer(updateData);
+      response.send({status: "ok"});
+      return;
     }
-    await deletePlayer(deleteData);
-    response.send({status: "ok"});
-    return;
-  }
 
-  response.status(404).send({status: "not found"});
-});
+    response.status(404).send({status: "not found"});
+  });
 
 
-exports.saveGameSession = onRequest(async (request, response) => {
-  if (!request.body) {
-    response.status(400).send("Request body empty");
-    return;
-  }
+exports.deletePlayer = onRequest(
+  {
+    cors: [
+      "http://127.0.0.1:5000",
+      "http://localhost:4200",
+      "https://pi-projekt-36c14.web.app",
+    ],
+  },
+  async (request, response) => {
+    if (!request.body) {
+      response.status(400).send("Request body empty");
+      return;
+    }
 
-  const userUid = await validateAuthGetUid(request, response);
+    const userUid = await validateAuthGetUid(request, response);
+    logger.info("deletePlayer req: " + request.body);
 
-  console.log("saveGameSession req: " + request.body);
+    const {playerId} = request.body;
 
-  const {playerId, chapter, level, score, durationSeconds, playedAt} = request.body;
+    if (!playerId) {
+      response.status(400).send("Request body not containing 'playerId'");
+      return;
+    }
 
-  if (!playerId) {
-    response.status(400).send("Request body not containing 'playerId'");
-    return;
-  }
-  if (!chapter) {
-    response.status(400).send("Request body not containing 'chapter'");
-    return;
-  }
-  if (!level) {
-    response.status(400).send("Request body not containing 'level'");
-    return;
-  }
-  if (score === undefined || score === null) {
-    response.status(400).send("Request body not containing 'score'");
-    return;
-  }
-  if (durationSeconds === undefined || durationSeconds === null) {
-    response.status(400).send("Request body not containing 'durationSeconds'");
-    return;
-  }
-  if (!playedAt) {
-    response.status(400).send("Request body not containing 'playedAt'");
-    return;
-  }
-  
-  const getData = {
-    playerId: playerId,
-    userId: userUid,
-  }
-  const player = await getPlayer(getData);
-  if (player.data.players.length > 0){
-    const saveData = {
+    const getData = {
       playerId: playerId,
-      chapter: chapter,
-      level: level,
-      score: score,
-      durationSeconds: durationSeconds,
-      playedAt: playedAt,
+      userId: userUid,
+    };
+    const player = await getPlayer(getData);
+    if (player.data.players.length > 0) {
+      const deleteData = {
+        playerId: playerId,
+      };
+      await deletePlayer(deleteData);
+      response.send({status: "ok"});
+      return;
     }
-    await saveGameSession(saveData);
-    response.send({status: "ok"});
-    return;
-  }
 
-  response.status(404).send({status: "not found"});
-});
+    response.status(404).send({status: "not found"});
+  });
 
+
+exports.saveGameSession = onRequest(
+  {
+    cors: [
+      "http://127.0.0.1:5000",
+      "http://localhost:4200",
+      "https://pi-projekt-36c14.web.app",
+    ],
+  },
+  async (request, response) => {
+    if (!request.body) {
+      response.status(400).send("Request body empty");
+      return;
+    }
+
+    const userUid = await validateAuthGetUid(request, response);
+
+    console.log("saveGameSession req: " + request.body);
+
+    const {
+      playerId,
+      chapter,
+      level,
+      score,
+      durationSeconds,
+      playedAt,
+    } = request.body;
+
+    if (!playerId) {
+      response.status(400).send("Request body not containing 'playerId'");
+      return;
+    }
+    if (!chapter) {
+      response.status(400).send("Request body not containing 'chapter'");
+      return;
+    }
+    if (!level) {
+      response.status(400).send("Request body not containing 'level'");
+      return;
+    }
+    if (score === undefined || score === null) {
+      response.status(400).send("Request body not containing 'score'");
+      return;
+    }
+    if (durationSeconds === undefined || durationSeconds === null) {
+      response.status(400).send(
+        "Request body not containing 'durationSeconds'");
+      return;
+    }
+    if (!playedAt) {
+      response.status(400).send("Request body not containing 'playedAt'");
+      return;
+    }
+
+    const getData = {
+      playerId: playerId,
+      userId: userUid,
+    };
+    const player = await getPlayer(getData);
+    if (player.data.players.length > 0) {
+      const saveData = {
+        playerId: playerId,
+        chapter: chapter,
+        level: level,
+        score: score,
+        durationSeconds: durationSeconds,
+        playedAt: playedAt,
+      };
+      await saveGameSession(saveData);
+      response.send({status: "ok"});
+      return;
+    }
+
+    response.status(404).send({status: "not found"});
+  });
