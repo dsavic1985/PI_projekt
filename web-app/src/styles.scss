@@ -130,6 +130,18 @@ input.ng-touched.ng-invalid{
 }
 
 /* homepage */
+.main-container {
+  width: 100%;
+  height: 100vh;
+  background-image: url("assets/images/home.svg");
+  background-position: center;
+  background-size: cover;
+}
+
+.main-container.secondary-container {
+  background-image: url("assets/images/home_levels.svg");
+}
+
 .main-container .page-back {
   position: fixed;
   top: 20px;
@@ -398,9 +410,24 @@ input.ng-touched.ng-invalid{
   padding-top: 100px;
 }
 
-.inline-svg .show-pointer path:first-of-type:hover,
-.show-pointer circle:hover {
-  fill: var(--pink-hover-color);
+.alph-letters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 50px);
+  justify-content: center;
+  gap: 50px;
+  margin-top: 50px;
+}
+
+.alph-letters button {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  padding: 10px;
+  font-size: 2.5rem;
+}
+
+.alph-letters button:hover {
+  background-color: var(--pink-hover-color);
   transition: all 0.1s ease;
 }
 
@@ -430,6 +457,10 @@ input.ng-touched.ng-invalid{
 .content-select {
   max-width: 300px;
   margin-top: 100px;
+}
+
+.content-select-resized {
+  display: flex;
 }
 
 /* level close icon */
@@ -519,6 +550,7 @@ input.ng-touched.ng-invalid{
 
 .answer-picked {
   fill: var(--pink-hover-color);
+  background-color: var(--pink-hover-color);
 }
 
 .answer-correct {
@@ -527,4 +559,323 @@ input.ng-touched.ng-invalid{
 
 .answer-wrong {
   fill: var(--warning-red);
+}
+
+@media (800px < width < 1440px) and (orientation: landscape) {
+  /* chapters */
+  .chapter-title img {
+    width: 200px;
+  }
+
+  /* levels */
+  .inline-svg {
+    max-width: 70vw;
+    padding-left: 100px;
+  }
+
+  .levels-intro {
+    padding: 120px 0 0 100px;
+  }
+
+  .level-svg {
+    max-width: fit-content;
+  }
+
+  .level-content img {
+    max-width: 450px;
+  }
+
+  .content-select {
+    max-width: 250px;
+  }
+
+  /* alphabetical levels */
+  .content-select-resized {
+    max-width: 400px;
+  }
+
+  .single-letter p {
+    font-size: 2.5rem;
+    margin-inline: 10px;
+  }
+}
+
+@media (width < 1160px) and (orientation: portrait) {
+  /* homepage & main container */
+  .main-container .main-intro .app-name {
+    width: 65vw;
+    margin-bottom: 50px;
+  }
+
+  /* app logo - secondary logo */
+  .main-container .app-logo {
+    width: 30vw;
+  }
+
+  /* chapters */
+  .chapter-title {
+    position: static;
+    display: flex;
+  }
+
+  .chapters-svg {
+    margin-top: 150px;
+  }
+
+  /* levels */
+  .levels-intro {
+    padding: 150px 0 0 0;
+  }
+
+  .level-content img {
+    max-width: 350px;
+  }
+
+  .content-select {
+    max-width: 200px;
+    margin-top: 100px;
+  }
+
+  .level-svg {
+    max-width: 70vw;
+  }
+
+  /* alphabetical levels */
+  .answer-icon {
+    margin-top: 30px;
+    height: 40px;
+  }
+
+   .alph-letters {
+    gap: 30px;
+  }
+
+  .alph-letters button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 2rem;
+  }
+}
+
+@media (800px <= width < 1160px) and (orientation: portrait) {
+  /* homepage & main container */
+  .main-container {
+    background-image: url("assets/images/home_portrait.svg");
+  }
+
+  /* chapters */
+  .chapter-title {
+    justify-content: flex-end;
+    padding-top: 100px;
+    padding-right: 30px;
+  }
+
+  .chapter-title img {
+    width: 250px;
+  }
+
+  /* levels */
+  .main-container.secondary-container {
+    background-image: url("assets/images/home_levels_portrait.svg");
+  }
+
+  /* alphabetical levels */
+  .single-letter p {
+    margin-inline: 10px;
+  }
+}
+
+@media (800px > width) and (orientation: portrait) {
+  /* homepage & main container */
+  .main-container {
+    background-image: url("assets/images/home_small_portrait.svg");
+  }
+
+  .main-container .main-intro .app-name {
+    width: 75vw;
+    margin-top: 200px;
+  }
+
+  /* app logo - secondary logo */
+  .main-container .app-logo {
+    width: 40vw;
+  }
+
+  /* dashboard */
+  .dashboard {
+    width: 90vw;
+    padding: 20px;
+  }
+
+  .dashboard .inner-panel {
+    height: 80vh;
+    padding: 20px;
+  }
+
+  .dashboard .player-panel form {
+    margin-inline: 0;
+  }
+
+  /* table */
+  .table-container {
+    max-width: 70vw;
+    max-height: 50vh;
+  }
+
+  /* chapters */
+  .chapters-svg {
+    max-width: 300px;
+    margin-top: 200px;
+  }
+
+  .chapter-title {
+    padding-top: 180px;
+    padding-left: 30px;
+  }
+
+  .chapter-title img {
+    width: 150px;
+  }
+
+  /* levels */
+  .page-back.close-icon.portrait-icon {
+    width: 50px;
+    height: 50px;
+    background-image: url("assets/images/level_close_portrait.svg");
+    background-size: 50px;
+  }
+
+  .page-back.close-icon.portrait-icon:hover {
+    background-image: url("assets/images/level_close_hover_portrait.svg");
+  }
+
+  .main-container.secondary-container {
+    background-image: url("assets/images/home_levels_small_portrait.svg");
+  }
+
+  .levels-intro {
+    padding: 80px 0 0 0;
+  }
+
+  .level-content img {
+    max-width: 250px;
+  }
+
+  .content-select {
+    margin-top: 50px;
+  }
+
+  .level-svg {
+    max-width: 85vw;
+  }
+
+  /* alphabetical levels */
+  .alpha-level .level-svg {
+    max-width: 90vw;
+  }
+
+  .single-letter p {
+    font-size: 2.4rem;
+    margin-inline: 5px;
+  }
+
+  .alph-letters button {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-height: 530px) and (orientation: landscape) {
+  /* homepage & main container */
+  .main-container .main-intro .app-name {
+    margin-bottom: 30px;
+  }
+
+  .main-container .app-logo {
+    width: 18vw;
+  }
+
+  /* dashboard */
+  .dashboard {
+    width: 90vw;
+    padding: 20px;
+  }
+
+  .dashboard .inner-panel .single-player {
+    padding: 20px;
+  }
+
+  .dashboard .inner-panel .single-player img {
+    width: 70%;
+  }
+
+  .avatar-picker img {
+    width: 40%;
+  }
+
+  /* chapters */
+  .chapters-svg {
+    max-width: 350px;
+    padding-right: 70px;
+  }
+
+  .chapter-title {
+    top: 300px;
+  }
+
+  .chapter-title img {
+    width: 130px;
+  }
+
+  /* level close icon */
+  .page-back.close-icon {
+    width: 25px;
+    height: 25px;
+    background-size: 25px;
+  }
+
+  /* levels */
+  .dark-popup img,
+  .dark-popup img {
+    width: 40%;
+  }
+
+  .levels-intro {
+    padding: 50px 0 0 130px;
+  }
+
+  .inline-svg {
+    width: 70vw;
+  }
+
+  .level-content img {
+    max-height: 100px;
+  }
+
+  .level-svg {
+    padding: 30px;
+    max-width: fit-content;
+  }
+
+  .content-select {
+    max-width: 180px;
+    margin-top: 30px;
+  }
+
+  /* alphabetical levels */
+  .single-letter p {
+    margin-inline: 10px;
+    font-size: 1.5rem;
+  }
+
+  .answer-icon {
+    height: 30px;
+  }
+
+  .content-select-resized {
+    max-width: 300px;
+  }
 }
