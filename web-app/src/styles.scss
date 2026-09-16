@@ -19,6 +19,10 @@
   src: url("assets/fonts/VarelaRound-Regular.ttf");
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 *,
 *::before,
 *::after {
@@ -35,12 +39,6 @@
 
 *:focus {
   outline: none;
-}
-
-html {
-  scrollbar-color: var(--scroll-color) transparent;
-  scrollbar-width: thin;
-  scroll-behavior: smooth;
 }
 
 /* heading h1 */
@@ -251,6 +249,9 @@ input.ng-touched.ng-invalid{
   background-color: var(--primary-background-color);
   border-radius: 15px;
   overflow-y: auto;
+  scrollbar-color: var(--primary-dark-color) transparent;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
 }
 
 .dashboard .inner-panel .single-player {
@@ -473,6 +474,12 @@ input.ng-touched.ng-invalid{
 
 .page-back.close-icon:hover {
   background-image: url(assets/images/level_close_hover.svg);
+}
+
+.inline-svg .show-pointer path:first-of-type:hover,
+.show-pointer circle:hover {
+  fill: var(--pink-hover-color);
+  transition: all 0.1s ease;
 }
 
 /* popups */

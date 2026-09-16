@@ -10,5 +10,5 @@ import { GameLevels } from '../game-level-common/game-levels';
   templateUrl: './math-levels.html',
 })
 export class MathLevels extends GameLevels{
-  chapterName: string = GameConstants.alphChapter;
+  chapterName: string = GameConstants.mathChapter;
 }
